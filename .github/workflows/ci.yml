@@ -42,3 +42,21 @@ jobs:
         env:
           AAE_DOCKER_TESTS: '1'
       - run: python benchmarks/run.py --sizes 100
+  comparison:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: FailproofAI/failproofai
+          ref: b8cce3b221f94b74b7283a6df63ffb603712776a
+          path: upstream-failproof
+          sparse-checkout: sdk/python
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest tests/test_comparison.py -q
+        env:
+          AAE_FAILPROOF_SOURCE: ${{ github.workspace }}/upstream-failproof

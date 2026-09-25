@@ -19,13 +19,15 @@
 
 # Agent Action Evals
 
-**A Python testing framework for the actions your AI agents take.**
+**Fault-injection testing for tool-using AI agents.**
 
 Run your agent against controlled business state, inject tool failures, and check what changed. Catch duplicate refunds, actions taken without authorization, and unsafe retries before they reach users.
 
 A refund tool can succeed even when its response times out. An agent may retry, issue a second refund, and still tell the customer everything went well. Agent Action Evals records the tool's effect and the response the agent received, then checks the state and action history against your assertions.
 
 **Status:** `0.2.0a1`, an early prerelease. The local runner and offline examples work. Live model quality, external-team pilots, and production isolation are still release gates. See the [roadmap](ROADMAP.md).
+
+The current focus is reusable fixtures, controlled tool failures, and assertions against business state. In a [local comparison with Failproof's SDK](docs/FAILPROOF_COMPARISON.md), both approaches detected the same three seeded failures with zero false alarms. Our potential advantage is less simulation plumbing; a broader product advantage remains unproven.
 
 ## What you can test
 
@@ -183,8 +185,9 @@ The recorded results measure the evaluator and the scripted integrations:
 | Synthetic evaluator corpus | 40/40 seeded unsafe cases detected; 0 false alarms; 0 runner errors | 160 labeled executions across 40 paired tasks from eight behavior templates |
 | Failure attribution | 40/40 first wrong effects localized | The same synthetic corpus |
 | Offline LangGraph | 100/100 passing runs | Ten fixed-policy cases, repeated ten times |
+| Failproof SDK comparison | Both detected 3/3 unsafe runs and passed 9/9 safe controls | Same policies and matching tool observations; custom state telemetry supplied to Failproof |
 | Small-fixture runner overhead | p50 **2.205 ms**, p95 **4.124 ms** | 10,000 local runs; 1,159-byte fixture; no model calls |
-| Test suite | 46 passed on Python 3.11 and 3.14; 2 Docker tests skipped locally | Runner, adapters, CLI, reports, and regression cases |
+| Test suite | Core CI matrix passes; 47 local tests pass with comparison configured | Runner, adapters, reports, and pinned SDK comparison; Docker checks pass separately in Linux CI |
 
 Read the [synthetic methodology and full results](benchmarks/results/local.md) and [offline LangGraph results](benchmarks/results/langgraph-offline.md). The synthetic corpus has parameterized cases; its score does not establish reliability on unseen agents or live models. Timings are specific to the recorded machine and workload.
 
@@ -198,7 +201,7 @@ python benchmarks/run.py --sizes 100 1000 10000
 
 Python and LangGraph integrations run trusted code in the evaluator process. In-process timeouts are cooperative. Plain subprocess execution also assumes trusted agent code.
 
-The Docker adapter is configured with no network, an unprivileged user, a read-only filesystem, and resource limits. It fails if Docker is unavailable. The two real Docker enforcement tests were skipped locally because the daemon was unavailable; the repository includes a Linux CI job for them.
+The Docker adapter is configured with no network, an unprivileged user, a read-only filesystem, and resource limits. It fails if Docker is unavailable. Its two integration checks for enforcement and timeout cleanup [passed in Linux CI](https://github.com/pratik-mahalle/agent-action-evals/actions/runs/36164942542). They remain skipped locally when no Docker daemon is available.
 
 To run the container example and enforcement tests with Docker available:
 
@@ -227,6 +230,7 @@ Useful contributions include realistic failure scenarios, adapters for existing 
 | [Roadmap](ROADMAP.md) | Implemented work and remaining production gates |
 | [LangGraph guide](docs/LANGGRAPH_EXAMPLE.md) | Offline and live examples |
 | [Report contract](docs/REPORTS.md) | Artifacts, redaction, and exit statuses |
+| [Failproof comparison](docs/FAILPROOF_COMPARISON.md) | Reproducible component comparison and product-scope decision |
 | [Changelog](CHANGELOG.md) | Changes in the current prerelease |
 
 ## License

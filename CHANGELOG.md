@@ -10,5 +10,7 @@
 - Add a ten-case LangGraph refund demo with scripted responses and a shared live-model entry point.
 - Version reports, capture configuration hashes, redact payloads, and checkpoint JSONL runs.
 - Add a synthetic conformance corpus, local overhead benchmark, and CI configuration.
+- Compare three paired failure cases with a pinned Failproof SDK worker using independent simulations and equivalent state evidence.
+- Fix the offline test network guard to allow Windows asyncio's internal loopback sockets.
 
 The JSON report now uses an envelope with `summary` and `runs`. Agents receive `ToolClient` instead of the internal `ToolPort`; use injected tools rather than direct world access.

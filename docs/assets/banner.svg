@@ -13,7 +13,7 @@
     <g transform="translate(96 83)">
       <rect width="30" height="30" rx="7" fill="#CAE989"/>
       <path d="m8 15 5 5 9-11" stroke="#111B16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="46" y="22" fill="#CAE989" font-size="18" font-weight="600" letter-spacing="3">STATEFUL AGENT TESTING</text>
+      <text x="46" y="22" fill="#CAE989" font-size="18" font-weight="600" letter-spacing="3">FAULT INJECTION FOR AGENTS</text>
     </g>
     <text x="92" y="231" fill="#F2F3E9" font-size="88" font-weight="700" letter-spacing="-4">Agent Action</text>
     <text x="92" y="323" fill="#CAE989" font-size="88" font-weight="700" letter-spacing="-4">Evals<tspan fill="#F2F3E9">.</tspan></text>

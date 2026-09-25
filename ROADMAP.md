@@ -4,23 +4,27 @@
 
 **Target:** A public Python package that external teams can run safely and repeatably in CI against their own agents.
 
-The current prerelease has 46 passing tests on Python 3.11 and 3.14, a ten-case LangGraph example with 100/100 passing offline runs, and a synthetic benchmark. A mutation test verifies that a duplicate refund fails evaluation. Two real container tests require an available Docker daemon and were skipped locally. Live model quality, cross-platform CI execution, competing-tool comparisons, and external-team adoption remain unverified.
+The core suite passes across the hosted Python/OS matrix, including the two real Docker checks on Linux ([CI evidence](https://github.com/pratik-mahalle/agent-action-evals/actions/runs/36164942542)). The ten-case LangGraph example passes 100/100 offline runs. A local comparison with the pinned Failproof SDK detects the same three seeded failures in both implementations, with nine safe controls and no false alarms. The current local suite passes 47 tests with the upstream checkout configured; two Docker checks are skipped locally. Live model quality, hosted Failproof integration, and external-team adoption remain unverified.
+
+## Scope decision after the Failproof comparison
+
+Focus on reusable fault-injection fixtures, state assertions, and adapters into existing evaluation workflows. The [comparison](docs/FAILPROOF_COMPARISON.md) demonstrated equivalent detection on three synthetic families. Reduced simulation setup is the next hypothesis to validate with two external teams. Broader platform work should wait for that evidence.
 
 ## Implementation status
 
 | Area | Implemented and checked | Remaining gate |
 | --- | --- | --- |
-| P0.1 isolation | Docker adapter, bounded protocol, restricted container configuration, explicit failure if unavailable; subprocess lifecycle tests pass | Run the two real Docker enforcement tests; local daemon was unavailable |
+| P0.1 isolation | Docker adapter and real Linux CI checks for blocked network/root writes, tool execution, and timeout cleanup | Broader adversarial review and production-team validation |
 | P0.2 integration | LangGraph adapter, ten shared offline/live cases, real ToolNode and unsafe-retry tests, configurable Anthropic example | Configure model credentials and benchmark a team's actual agent |
-| P0.3 execution | Serialized tool effects, committed-state capture on errors/cancellation, sealed worlds, subprocess cleanup | Host Python is trusted/cooperative; enforced agent cancellation needs Docker verification |
+| P0.3 execution | Serialized tool effects, committed-state capture on errors/cancellation, sealed worlds, subprocess cleanup; Docker timeout cleanup verified in CI | Host Python remains trusted/cooperative |
 | P0.4 validation | Preflight IDs, cases, paths, contradictions, schemas, fault targets; rejected calls remain failures | Broader pilot feedback on custom domains |
 | P0.5 reproducibility | Scenario/configuration/source hashes, versions, seed/deadline metadata, immutable Docker image ID | Custom driver configuration must be declared; external service state is not captured |
 | P0.6 reporting | Versioned JSON envelope, JSONL checkpoints, JUnit classification, default payload redaction | Backward compatibility across future releases |
 | P0.7 attribution | Direct violating events and transitions are labeled; uncertain attribution remains explicit | Validate explanations on real production incidents |
-| P0.8 release | Public GitHub repository, private vulnerability reporting, dependency lockfile, CI matrix, source/wheel builds, clean-wheel example, contributor/reporting docs | Verify the hosted CI matrix and publish a tagged release |
+| P0.8 release | Public repository, private reporting, green hosted CI matrix, dependency lockfile, source/wheel builds, clean-wheel example, contributor/reporting docs | Publish a tagged release after pilot gates |
 | B1 evaluator | 160 labeled executions, 40 seeded unsafe cases detected, 0 false alarms | Eight parameterized templates provide conformance evidence, not broad generalization |
 | B2 live reliability | Shared live example and per-case repeated-run reports; offline graph run passes 100/100 | Model credentials, selected agent, held-out real cases |
-| B3 comparison | Method specified below | Execute fair comparisons against existing tools |
+| B3 comparison | Pinned Failproof SDK component comparison: both detect 3/3 failures and pass 9/9 safe controls | Real-team setup study; hosted integration and other comparators remain untested |
 | B4 overhead | 100/1,000/10,000-run measurements at two fixture sizes | External-team usability pilots |
 
 Measured results and caveats are in [the synthetic benchmark](benchmarks/results/local.md) and [the offline LangGraph integration results](benchmarks/results/langgraph-offline.md).
