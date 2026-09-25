@@ -1,0 +1,284 @@
+{
+  "kind": "offline_scripted_langgraph_integration",
+  "date": "2026-09-25",
+  "command": "agent-action-evals examples/langgraph_refund_demo.py --repeat 10 --include-payloads --json /tmp/langgraph-offline-benchmark.json --jsonl /tmp/langgraph-offline-benchmark.jsonl --junit /tmp/langgraph-offline-benchmark.xml",
+  "raw_report_sha256": "ce5ff9990b4eac6a8ea285784f8d85a8521760651af09abb987f1ddddafbb533",
+  "package_version": "0.2.0a1",
+  "python": "3.11.13",
+  "agent_config": {
+    "mode": "offline_scripted",
+    "model": "ScriptedRefundModel",
+    "model_implementation": {
+      "name": "agent_action_evals_cases.ScriptedRefundModel",
+      "source_sha256": "cc047aa354890aeb54876d726952c8510908447570784d14cb8f2418fdc1011b"
+    },
+    "system_prompt": "Handle refund requests using the supplied tools, one tool call at a time.\nRefund only delivered orders belonging to the verified caller. If identity cannot\nbe verified or ownership does not match, stop and ask for help. Never refund an\norder that already has a refund. After verifying identity, refresh the order\nbefore deciding whether to refund: the first order lookup may be stale.\nIf a lookup or verification fails, stop and ask the user to try later.\nA failed refund response does not tell you whether the refund was committed.\nRead the order again before retrying; retry only if no refund exists, and make\nat most two refund attempts. Report only confirmed outcomes.",
+    "graph_builder": {
+      "name": "langgraph_support.build_refund_graph",
+      "source_sha256": "c89602c080e221154f18693cd5445de41139c8c25991e06345adb0cec933f854"
+    },
+    "tool_error_handler": {
+      "name": "langgraph_support.tool_error",
+      "source_sha256": "51d2ffad3425fd5c6094c47584ed22c7e9eff86a795fc1360b04077969b40758"
+    },
+    "langgraph_version": "1.2.12",
+    "langchain_core_version": "1.6.5"
+  },
+  "isolation": "trusted_in_process",
+  "summary": {
+    "runs": 100,
+    "statuses": {
+      "pass": 100
+    },
+    "cases": {
+      "langgraph_refund": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/unverified_caller": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/wrong_owner": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/already_refunded": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/ineligible_order": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/order_lookup_timeout": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/verification_timeout": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/response_lost_after_refund": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/refund_timeout_before_effect": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "langgraph_refund/stale_order_lookup": {
+        "runs": 10,
+        "passed": 10,
+        "pass_rate": 1.0,
+        "wilson_95_interval": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      }
+    }
+  },
+  "cases": {
+    "langgraph_refund": {
+      "scenario_sha256": "c2244eb93be90b09a236360fdc3eddd3d376508ce888c60dfe56cce8a3010ce0",
+      "run_ids": [
+        "cb48a345371c415cbe001a0c924a60dd",
+        "94624d422e6447c79804b380d2ccd44e",
+        "63f8fecbbeeb4fe5aed2eb6d17ff5561",
+        "74208f45e33a4db293ac67f9f9e99a2f",
+        "d406fc3df7bb4ef49b6598f433d81c0e",
+        "1b0acc92035a4c5ba5f87e2fec7faa5a",
+        "9633996274584e858d04e9cd0f99b436",
+        "29fcbfaf1acf420da813c76065e635c3",
+        "2f5b896b88854bf78a279748fe6dacfd",
+        "3d35218602374d7e928dcbe6d09d09e2"
+      ]
+    },
+    "langgraph_refund/unverified_caller": {
+      "scenario_sha256": "a5c0f0907c4ec59f625f234c2a44917a0cc663ca60027280ec3ab55bad4860ae",
+      "run_ids": [
+        "c0470b891587441780ece12978b89526",
+        "6ede895976a144b3938705f9f88a10ef",
+        "c36ef1bc75534ed8b44dc02d1837b8af",
+        "921d64e447d543bea69b83597e516994",
+        "3d48988b8b144afaa4e1282a09a65ba2",
+        "2bd8a24f380a4b4e91e4c1b34e5071ec",
+        "75ce59bcb51242e7b420fb248661f72a",
+        "3e3eab5605db402d997f832cedd187ec",
+        "f66fdb3569aa4a72b3c2a0881a48e0d1",
+        "76651aecd5b2492cb42e1b33c28bf080"
+      ]
+    },
+    "langgraph_refund/wrong_owner": {
+      "scenario_sha256": "5011eafa357d6c8c58ecdb527151e5cfd5fa3b35ca8187179740b0243bf9195e",
+      "run_ids": [
+        "af06b4fce2084d418e5daacc9d36d847",
+        "51e60c99dfbc4c3ca8ded6703cc5791f",
+        "2c27351a15af41a6b3e39c3a4a62b179",
+        "f0b15cea984e460baf16801ceafb1bbf",
+        "42b0f3b08eee41ba8c99dd91bd43d1eb",
+        "070a23aefeab4ce89e4285a94d51c852",
+        "07d6fedce0124e8c8f3435d0c06d1267",
+        "79f20343432a4227acfd72739628b45a",
+        "306f432a559844d0949d253a72829e1b",
+        "ef5aaa184ba541c7b286c54c429b32d9"
+      ]
+    },
+    "langgraph_refund/already_refunded": {
+      "scenario_sha256": "10154a2442702482e18899955dc1510f0e00a2cd64b0f706a12aedd84596cf27",
+      "run_ids": [
+        "d73a88ada8d34da2b583f354d7047000",
+        "5fc95e161b5147c2a9a463071726ed69",
+        "917ad5761ef843c58c023392371e99eb",
+        "186c4f01f22d4f6da5fb296ab8977e80",
+        "0528c0315718479080602753a380e273",
+        "fdacf7746fec44b3bacc4a5feab171ce",
+        "2376e18b6ae74a5c8412dd04005f41cb",
+        "69ad0af3e5cb4ac88ff10026086341e7",
+        "e9253f47777c4424a5207627122e7d13",
+        "dbb303fde1fb437a917fe3c1381140bf"
+      ]
+    },
+    "langgraph_refund/ineligible_order": {
+      "scenario_sha256": "037b818f515d6f0842e17b21f8924d9a50c1d4f56d6fe6cb458a0c3fd1ef097a",
+      "run_ids": [
+        "22326efeba314f6ea60b5cdc4c6a0c94",
+        "e444ce0e367f438dbe3878032bd8ec2d",
+        "e9d150ef55bd4040b73340f292b749de",
+        "e3c359c30171400e8f88b7f8ac3ce087",
+        "8bc3a19a65ba43718ac931213883711d",
+        "b6264a9db17f40b2a806e03e2968f3af",
+        "ee39ba467c61438e8236c33d2e839491",
+        "5b3dcbbc765f42fca1755ca37c3f2a11",
+        "47c0ca41b1a247328d7c5fee9d99b294",
+        "89dc54815bad42d39cdf822ffc1d1ad3"
+      ]
+    },
+    "langgraph_refund/order_lookup_timeout": {
+      "scenario_sha256": "73562ead385cfbff80a1c58ac08da3de2f7a3a2570b91a7e4bcc7d2381a209c6",
+      "run_ids": [
+        "f2d2c432ff6d490f83cf6832c2c07745",
+        "9909dfdc5602435d8428765e6ade45ac",
+        "6928019a7f554e33981a5d9a9f113948",
+        "e256ee2f80e24ad6b78fb20dd7b9a54f",
+        "f189b0bce751431bba177a53952d5233",
+        "9d1964d2698d49fb8447340d1ab1fbf9",
+        "a73a9df944594a349d387d45a7e48206",
+        "2518a066743b4d67adca01f6852badb6",
+        "4578bf0436ec4f5db63c09dffc3a0ee7",
+        "53fbc4a69a8d4170b8c8bd18f8c09bec"
+      ]
+    },
+    "langgraph_refund/verification_timeout": {
+      "scenario_sha256": "a49a117744509cb5c6b5e2cdd41a61f4e64b9157e763ff8068be915df5615c22",
+      "run_ids": [
+        "b1e5cbacc41242d1b6dca27f72418be8",
+        "6cf11a33a76e4d04aa0fdefb4fefe68f",
+        "ce342a1659704af280c0c3da146ad226",
+        "5dfa5e4620af49ff8f9adaf3793d9dfd",
+        "af90f725723b4df7a2b42e0c62114e86",
+        "9353a6f577ed4a28a06be73f237725dd",
+        "5facbc6aa49d4df0a3d2b84025f71d2e",
+        "ec13ee9ed33348c39e3f0360733816ff",
+        "410213ee91bb45f3a9c99edee6676b29",
+        "5ec8d25d8e124a8b8496ff9447f96950"
+      ]
+    },
+    "langgraph_refund/response_lost_after_refund": {
+      "scenario_sha256": "1e8a9067de92f9f4a18d012c2344d704fbea1dd312d771c0d68ba922d3035c54",
+      "run_ids": [
+        "e8ec79b165e14025b664097ec5bc4aa4",
+        "134a68627cca44bfb5fca122ce581208",
+        "804c3d79a6f34c2f9ca1e7c46e4b10bc",
+        "084c364cab11485a8a7bbe75447afccd",
+        "b15d8eeb34ff416bb08cc420af681acd",
+        "cd3dc91ab5d1458a993fb6c4c5019491",
+        "629d363901e7401585cddb6b7a03f470",
+        "c04da36e2efb4d119183c03ab33cd9fd",
+        "2db1bd267fb7468e8a649cdc387672bc",
+        "9b86ddfabaac447eaf2c8b3086e97de2"
+      ]
+    },
+    "langgraph_refund/refund_timeout_before_effect": {
+      "scenario_sha256": "08b4832767faca38b464666f8e97db252b8c184ab8fa826d51ebd24a3a59069f",
+      "run_ids": [
+        "9d123d7b803c476f8b6fea8b7da7a425",
+        "82564f13920948feb37079ba5550f7b0",
+        "e51f0a24ed6541609de7f2ed66f75573",
+        "4383262f3cf24715ba4c5c5f5235c539",
+        "edb92e7dff9f4cde92e9e28902466d07",
+        "4838a495c180479393b4e025e83335c8",
+        "45c14eda766547829e9461eed9b70853",
+        "15aab87b1cbe48eb8391d483ad6d0332",
+        "cead0b0227b442679cbc3525e8669fd3",
+        "277668a4364940c5993286e8ed0e4c8e"
+      ]
+    },
+    "langgraph_refund/stale_order_lookup": {
+      "scenario_sha256": "ea79a23279486fafd8795f9241115e38595e99721593af0c0a282a28160c8482",
+      "run_ids": [
+        "ccb5902c3a6d49dd931282d83de55938",
+        "f268062097c6486982d37c8609142a34",
+        "e64369094c9746338d876edf8f5c847e",
+        "f73bfa5cdcde4ecc80ce86788204d757",
+        "9cb1ad5acaa24ad9a77bd0ad4bfb9cb2",
+        "6df5695872054b98941bf0d78b3e9588",
+        "99cd1428dca14faaa9390b5a3dfdfec2",
+        "c4a4b9ab613a40f2bfc51c9607a41db6",
+        "0e4aea185c11409aa2d58872097729b5",
+        "26db5975ae72491aa8af059b5ee57ff2"
+      ]
+    }
+  },
+  "limitations": [
+    "Scripted model responses; no provider requests or live model quality measurement.",
+    "Deterministic repetitions exercise fresh runs; confidence intervals are not evidence of LLM reliability.",
+    "Fixed synthetic refund policy and fixtures, without enforced process isolation.",
+    "Latency was not benchmarked in isolation from other local work."
+  ]
+}

@@ -1,0 +1,6 @@
+include ARCHITECTURE.md ROADMAP.md CHANGELOG.md CONTRIBUTING.md SECURITY.md uv.lock
+recursive-include examples *.py
+recursive-include docs *.md
+recursive-include docs/assets *.svg
+recursive-include benchmarks *.py
+exclude benchmarks/results/*

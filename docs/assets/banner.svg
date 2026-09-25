@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" fill="none" role="img" aria-labelledby="title description">
+  <title id="title">Agent Action Evals</title>
+  <desc id="description">Test what your agent actually does. A tool call commits one refund, its response is lost, and a safe recovery reads the state before retrying.</desc>
+  <defs>
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#26332C" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="560" rx="24" fill="#111B16"/>
+  <path d="M900 0H1576a24 24 0 0 1 24 24v512a24 24 0 0 1-24 24H900V0Z" fill="url(#grid)"/>
+  <path d="M64 72V48h24M1536 72V48h-24M64 488v24h24M1536 488v24h-24" stroke="#536747" stroke-width="2"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif">
+    <g transform="translate(96 83)">
+      <rect width="30" height="30" rx="7" fill="#CAE989"/>
+      <path d="m8 15 5 5 9-11" stroke="#111B16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="46" y="22" fill="#CAE989" font-size="18" font-weight="600" letter-spacing="3">STATEFUL AGENT TESTING</text>
+    </g>
+    <text x="92" y="231" fill="#F2F3E9" font-size="88" font-weight="700" letter-spacing="-4">Agent Action</text>
+    <text x="92" y="323" fill="#CAE989" font-size="88" font-weight="700" letter-spacing="-4">Evals<tspan fill="#F2F3E9">.</tspan></text>
+    <text x="96" y="382" fill="#C0CDBF" font-size="29">Test what your agent actually does.</text>
+    <path d="M96 425h688" stroke="#344537"/>
+    <text x="96" y="463" fill="#C0CDBF" font-size="17" letter-spacing="1">STATE ASSERTIONS</text>
+    <circle cx="306" cy="457" r="3" fill="#CAE989"/>
+    <text x="328" y="463" fill="#C0CDBF" font-size="17" letter-spacing="1">FAULT INJECTION</text>
+    <circle cx="513" cy="457" r="3" fill="#CAE989"/>
+    <text x="535" y="463" fill="#C0CDBF" font-size="17" letter-spacing="1">CI REPORTS</text>
+    <rect x="913" y="101" width="584" height="358" rx="18" fill="#17231B" stroke="#455B3C"/>
+    <circle cx="942" cy="131" r="4" fill="#CAE989"/>
+    <text x="958" y="137" fill="#BACDB4" font-size="15" font-weight="600" letter-spacing="2">ONE REQUEST. ONE REFUND.</text>
+    <path d="M913 157h584" stroke="#344537"/>
+    <path d="M956 206v168" stroke="#56713F" stroke-width="2"/>
+    <circle cx="956" cy="211" r="11" fill="#CAE989"/>
+    <path d="m951 211 3 3 6-7" stroke="#111B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="987" y="205" fill="#F2F3E9" font-size="22" font-weight="600">issue_refund()</text>
+    <text x="987" y="233" fill="#A7B8A3" font-size="17">Effect committed · refund_count = 1</text>
+    <circle cx="956" cy="292" r="11" fill="#E8AA77"/>
+    <path d="M956 286v7m0 3v1" stroke="#17231B" stroke-width="2" stroke-linecap="round"/>
+    <text x="987" y="287" fill="#E8AA77" font-size="22" font-weight="600">Response lost</text>
+    <text x="987" y="315" fill="#A7B8A3" font-size="17">Did the action actually happen?</text>
+    <circle cx="956" cy="374" r="11" fill="#CAE989"/>
+    <path d="m951 374 3 3 6-7" stroke="#111B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="987" y="368" fill="#F2F3E9" font-size="22" font-weight="600">Read state before retrying</text>
+    <text x="987" y="396" fill="#A7B8A3" font-size="17">Existing refund confirmed. Stop.</text>
+    <rect x="1275" y="419" width="195" height="25" rx="6" fill="#CAE989"/>
+    <text x="1372" y="437" fill="#17231B" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1">ASSERTIONS PASS</text>
+  </g>
+</svg>

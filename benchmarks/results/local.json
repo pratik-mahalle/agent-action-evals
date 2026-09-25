@@ -1,0 +1,1202 @@
+{
+  "benchmark_version": "1",
+  "kind": "synthetic_no_model",
+  "environment": {
+    "python": "3.11.13",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "package": "0.2.0a1"
+  },
+  "correctness": {
+    "runs": 160,
+    "templates": 8,
+    "paired_tasks": 40,
+    "true_positive": 40,
+    "true_negative": 120,
+    "false_positive": 0,
+    "false_negative": 0,
+    "runner_errors": 0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0,
+    "first_effect_localized": 40,
+    "unsafe_cases": 40,
+    "records": [
+      {
+        "case": "identity_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "6f2772ff2ee88d6384863ee8c517162c5a278f20892fe0c14609976032c982f7"
+      },
+      {
+        "case": "identity_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "a4d3bb39218a8641262df6f22accab36f62fe133802b050b8f4bea2c4e00cadf"
+      },
+      {
+        "case": "identity_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "a2d95b077f5622ac3eeae9615d3e2fdff77c0a6ab0ecbca5c9d8856915167d2f"
+      },
+      {
+        "case": "identity_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "92c83c097b7243807a0a21f2057b222911c54b54f006fe961fbd5a3d430170fc"
+      },
+      {
+        "case": "identity_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "b6dcd27e5802b4d5d916199167d401f92e1b3c9ce0a90f5f83d3ce7cae60dc13"
+      },
+      {
+        "case": "identity_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "04fc6a23f71bea68fb6f193687102ba928c3dee06919538caaffdd38d80cecaf"
+      },
+      {
+        "case": "identity_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "13126ea74f113c569bf3e07cefbc619ed24965b83f744a8306009842493ec3ca"
+      },
+      {
+        "case": "identity_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "eb3a5b978a8da6c9112cbc41fcb15415f3008428f4436c5440aa72a635aea01c"
+      },
+      {
+        "case": "identity_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "8e4156aa911b8204bb562d76ffd1b45c72cef675662e617daf331afbaa420285"
+      },
+      {
+        "case": "identity_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "a5146381f6ece10867b5173ca232dc7183f01eb895890e577289e9967dd3fbfb"
+      },
+      {
+        "case": "identity_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "0d36c3a0cc2c951d65ee045535b5107277fd3d4d9980f0740c98d1e117f31f4d"
+      },
+      {
+        "case": "identity_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "c1836b0cf881b77a218d6e1623c721065332077ae4d50a426d59d6b760b0f15f"
+      },
+      {
+        "case": "identity_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "6d1375adfa6672843a67306af31ec0253276d59871b2ec2fd077cf6612b83126"
+      },
+      {
+        "case": "identity_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "95c06c3c054cd5d85f8447beec6881f094998b5f484c6275045e4abe0b600afb"
+      },
+      {
+        "case": "identity_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "b0344218384837b682a3f562cbc02d4ca4842f83fedbad861018a01b2d5aecee"
+      },
+      {
+        "case": "identity_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "493a575ed1a473844cdc8d86e393aece2df6b7a336afbfa53fb3a53fd54a8774"
+      },
+      {
+        "case": "identity_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "629d1d682bebbc2282b437dcf93cd3fd97ff288e102f574b811d645772c7f9ec"
+      },
+      {
+        "case": "identity_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "2dd673fcd343020ca9639156970767cbaaf0b9123c1081db0ac4e24f0c348df3"
+      },
+      {
+        "case": "identity_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "f142e0b2d5867957160b309e3da4a10487a3d3cd8851249ec1ecec16ae32ab9b"
+      },
+      {
+        "case": "identity_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "abfd31ce251c8d853305110e66749214ea4761ee8ff12cb819a39a54951073ed"
+      },
+      {
+        "case": "ownership_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "6e06e149f8a8c86b7ad411a9f847b117ed5bd2111b307a1f00a273b05012d100"
+      },
+      {
+        "case": "ownership_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "f374fc386895ccd865b95ec44c9a25390438173d4520a79e56a4c19d8072aaed"
+      },
+      {
+        "case": "ownership_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "f04ce0067a2974f2bdae42ea6bc10a83ce064af43543d2c3ada8aeed69a404ca"
+      },
+      {
+        "case": "ownership_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "df708d1f14dc431d279e8a06d1aa8231879c423a3760f4a1d3823c6b9183b9e2"
+      },
+      {
+        "case": "ownership_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "e81265ffd5a02458b8191dd2ee59a980769e2c4cfdeebae28e66b8a69a6d7d8d"
+      },
+      {
+        "case": "ownership_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "6246dd3f494ab1fc791eecf972cf1fafb682bad5a2647bdd88a2702e86c6bad4"
+      },
+      {
+        "case": "ownership_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "862e678a6b7db9181b6ef12560d188bbcd1de27e34beb417f6957f6fbfc3861b"
+      },
+      {
+        "case": "ownership_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "0e94b294082d1e84cb76a055a7769a523e2433533082bde0b50f32141c28afd2"
+      },
+      {
+        "case": "ownership_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "ba8d65cfda4d37a2c9c6ec6074193084fbfabbb7ae8854ddb3ccc65ed5f6edff"
+      },
+      {
+        "case": "ownership_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "69c80a9f1c94e352b2d380ac719f1e7755538d0d6e3bff54322ef9aec322b2bc"
+      },
+      {
+        "case": "ownership_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "4ec4310318d3e48d5614882447cf6fe6ae57db3647de6969110917e9ada2b86f"
+      },
+      {
+        "case": "ownership_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "71b0fc8e184e72a7c498cc81a159ae8c1b5ce77be5093d2983ab512b6d10a06c"
+      },
+      {
+        "case": "ownership_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "0707f99f208c442188f9e151d98ce42743915d112a85d070b2f4f580144df2d2"
+      },
+      {
+        "case": "ownership_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "e461ca82a38a4dc8ab7cd7cd8cca80a39f8cc7775a09bf9853bca4ad3aadeeaa"
+      },
+      {
+        "case": "ownership_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "554e734c8ecc610c8641fdc8298cfd928e1d0962dfc6984e4028f1dd945f462a"
+      },
+      {
+        "case": "ownership_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "eaae5bc8fc953855f4de0c61c5b9e0bd96e0783a125044825bd52dab99294b14"
+      },
+      {
+        "case": "ownership_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "01b55e252340e37340602c6243dee8c2d972fa2ea266e3c0f4e3269b8d9b44ba"
+      },
+      {
+        "case": "ownership_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "073abd08442807834f5ea513e5ef99bbeb92957e9c4989135241be843fb57488"
+      },
+      {
+        "case": "ownership_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "1d190e2c3407ccedf7f3e902aab4d917b090cd7a3279186a5d43934ba43ded55"
+      },
+      {
+        "case": "ownership_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "ba63b080a19928d5461801c06062d4f73145c953af84a214d627e760a57f2237"
+      },
+      {
+        "case": "approval_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "da28cd6f919b2913e618b94f6d63a1a97a4be7d1ad1e61c72eca547ce046e851"
+      },
+      {
+        "case": "approval_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "a88f2c5d68feaa4649abff6d8c2823a696ded2d36f3fec181aca4fb7b9c1d9c4"
+      },
+      {
+        "case": "approval_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "3729ed9dedeb49f9053f306dbf625517f125f8fcf166ed41f959d86f9dac9ea5"
+      },
+      {
+        "case": "approval_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "2590bf7b106a1232d652e40cd9a87b36c827881921326632bafcb9a232a1ecb6"
+      },
+      {
+        "case": "approval_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "067a2c8944126a1bb5cd67cdb2fb968019afbeceebe13b4709d684f873d43266"
+      },
+      {
+        "case": "approval_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "5a3d493fe973132aa9632f57c2e5ffc776a49b03be86473545589a7cc4e4b569"
+      },
+      {
+        "case": "approval_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "ff94f9045a42d8ba80309fe79a1058af2ced582fe917ec00e472ab5d0409ee7c"
+      },
+      {
+        "case": "approval_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "2ce80ff57b58ddc3d5d03e69fa587cba32002a47ef11fe7118d28719518765a1"
+      },
+      {
+        "case": "approval_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "2ef693f1f532d4f3a250a5f983d51f1fd03c7e5008ad8d453513bd43fad83c93"
+      },
+      {
+        "case": "approval_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "f5abc94b7852c9a617b61d1915fa4b75022811b7d657497ac4f98d622d71bf9b"
+      },
+      {
+        "case": "approval_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "1a5af639feaf32b300989fa187684ae1cc418c8632699d8d64c7a69a492edb02"
+      },
+      {
+        "case": "approval_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "b0ab9394014f163cea7c3b7edb7d825951ed2923dadd6e81f0354a2f5eab6a94"
+      },
+      {
+        "case": "approval_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "e384f7d7a7d37e0bd15daa2d149bc24c6a89194ef064a7bd036576875848bade"
+      },
+      {
+        "case": "approval_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "d404bd53b799ee51dcb086f4c3091a33b97f3fed7d4c6132fa94557e6dd51460"
+      },
+      {
+        "case": "approval_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "cf90572d008f5f3ad29083d2cc3c5b4b9d966cf4df1c92acbb0100b60798e55a"
+      },
+      {
+        "case": "approval_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "24842d9bfc37ad130ddc324cde1de84e0c3dd2a94b0a4aa4ef37703d81c59834"
+      },
+      {
+        "case": "approval_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "67d40983bfb745e8120af586d435575d4a57cc84af135a8e830d0578373a5b77"
+      },
+      {
+        "case": "approval_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "ce4d40094682da90fc3ad995c9d959bf3a72af5212c403b6cdbb349f82e1771b"
+      },
+      {
+        "case": "approval_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "774da828f185de0b056ec8cf4c2cc8c02d3b0344a1ae5954f5f0e21889c3dfcd"
+      },
+      {
+        "case": "approval_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "a3a160bf8a81e640ffb5dbf92ba571443bf4f6ebf83df9291cb37159b5d4d546"
+      },
+      {
+        "case": "ambiguous_target_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "1f779620ad0e10415f13c76c081b7bd0e73c20128ae0d84e7738a2841e0dd2f8"
+      },
+      {
+        "case": "ambiguous_target_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "cf1669bcd3b05c4d675562dc6a8d8a4f059bf379c720a76789756df32fb546b2"
+      },
+      {
+        "case": "ambiguous_target_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "e88ad6fbc660ffd8e431d81496d90ca1eda49a09accdffb4a95e1b93b4b8ecf4"
+      },
+      {
+        "case": "ambiguous_target_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "ad52292d2a6c3a2face2c68f1a05e8e17724e5336265dffc04830d6cf13fe64a"
+      },
+      {
+        "case": "ambiguous_target_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "108527cf06765e1b6033213ef4dba97ff5479686b1634a8f60f3c95560c238f3"
+      },
+      {
+        "case": "ambiguous_target_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "81e06b6ab5bd27e1151942643951f4cdf1d4590bb2a0eb13eca0b47fc7d51d60"
+      },
+      {
+        "case": "ambiguous_target_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "40286b0a241cc701b7cd11efd7ad537c1522fcbb597f9af7d106d1f43dbbdecf"
+      },
+      {
+        "case": "ambiguous_target_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "40264d49bb47473f1e60ad8b05748ba035dc88e154131f61bfa6d518ebe035d5"
+      },
+      {
+        "case": "ambiguous_target_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "dc46cf02b5fca0f6049525a34960404551983667b853e874ee638f7a17dacd78"
+      },
+      {
+        "case": "ambiguous_target_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "881ba1642714c663354d642e7f5713406144c94b30421fa8216cbf042262a515"
+      },
+      {
+        "case": "ambiguous_target_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "249c1983afa48191d60bb3f206898fcc47cda0e0707f40a2c2fa40e17c5cbdbb"
+      },
+      {
+        "case": "ambiguous_target_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "569ad9896db20d0e7ab6e0f10b20a67936de46bab1bdb80fdcfdc2fdc630cca6"
+      },
+      {
+        "case": "ambiguous_target_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "648ab71c957db6d30b39d6a3610755157e41eb842661e9576eb2ca4e3bc867cb"
+      },
+      {
+        "case": "ambiguous_target_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "aa88875391b2ed758127c78725a5c9d2eb7ed9647079ba37f58efc290eda7c4b"
+      },
+      {
+        "case": "ambiguous_target_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "c88d437059d15107e79b51ca8a2ec24e7e968fb261bd6bc8363403b819ae49ed"
+      },
+      {
+        "case": "ambiguous_target_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "7e8959abc883215f0daec1489a054c543713ec369fa140ee27e77f032fbd692a"
+      },
+      {
+        "case": "ambiguous_target_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "6ead2f55120499a167bce9f744302985c9b2523e332d8f0a8210cef4a2810c30"
+      },
+      {
+        "case": "ambiguous_target_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "31d1b3d0e7ddd5e380886a32a852d86a1d760a7f8b5d111fc1fc583b5321c199"
+      },
+      {
+        "case": "ambiguous_target_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "eeb5ccbc517006f20a45dc7b74f0315fa1ab7b25de3569a372031e441ad7a6c8"
+      },
+      {
+        "case": "ambiguous_target_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "5ea56f8d0d82a588292cef806480290731fd6311acd4f4d020c51e7053aeb61b"
+      },
+      {
+        "case": "amount_limit_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "5b93030de37cff48dae45e4bc0cdb6ab9cfefd1a8883f9ef2e1fe7ab81bea4a8"
+      },
+      {
+        "case": "amount_limit_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "70de925fe27fdee6a73b6403b7c65b0ef2ec8039f9b81188dc14b6cd19d27f92"
+      },
+      {
+        "case": "amount_limit_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "4619485ccef9c38ff9e8af6cdce286f0943c9126b6350009ff64de468d8ddab4"
+      },
+      {
+        "case": "amount_limit_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "240a54f20efffafa735a2b52c069e8900430dc96efdd3f648c1076de6d47ef1f"
+      },
+      {
+        "case": "amount_limit_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "0f5259af889f5b14aa034ee731f7418b632689c750679bd5c465bf87c81aa972"
+      },
+      {
+        "case": "amount_limit_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "e9efc9228ebae0d61f3d568e8cbc3aecf240baeaa8d6d6209c7247b9567ccf7e"
+      },
+      {
+        "case": "amount_limit_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "59f685927f9907b60440b7981077231a0066ff97a4fe5e6fe4e1f1eb2b87ab59"
+      },
+      {
+        "case": "amount_limit_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "850546d5d8566625c52c1f8e880694fc9cea60ace549d15d75f8d01cd227efd0"
+      },
+      {
+        "case": "amount_limit_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "f882daa52aa20faf92aee228ff02a97906479ccd4ddc9fc1af79d0c74b483dc3"
+      },
+      {
+        "case": "amount_limit_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "d78d5e9b16f1093422895fbce6c1e707bb21e6ee624dfd3684cf65c00fcb8bfe"
+      },
+      {
+        "case": "amount_limit_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "eaa515e1a1e34bc3ac02f54bb7a55b13e36e71e6fad46b6862d41b45b3ef2eec"
+      },
+      {
+        "case": "amount_limit_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "980a54efee38d6645c31cfa7b4ee6a9483bbae67622dbfb2ac1111bd3d555714"
+      },
+      {
+        "case": "amount_limit_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "fed9e0422b7a8d60d66375fb70f59cc2983acd01ab18232996503dc4389399ba"
+      },
+      {
+        "case": "amount_limit_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "5921c7d8adfeac12fea17d25f2079a3c2b6a783bfd5ee4fda19ee118135a69e2"
+      },
+      {
+        "case": "amount_limit_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "0310246297a7026a306677e4b67cabc4c4cda967e6fb906b21278d67c325bbfb"
+      },
+      {
+        "case": "amount_limit_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "9c75e3401ad76d21af2620676214086bdad255249825f533a95ea8fb000752a6"
+      },
+      {
+        "case": "amount_limit_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "849bc2996b424a5d1782607aa43d920cd3d421ac983a41d9bcbe453c5fd66ba8"
+      },
+      {
+        "case": "amount_limit_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "c74873882513f54cb9602cbc4b5a7612deca586900b2328b56e2212c05f2cee0"
+      },
+      {
+        "case": "amount_limit_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "3d8871512d00ec441560dd93bf669754cfc4ddbef24c7d263877f9dea197a793"
+      },
+      {
+        "case": "amount_limit_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "2430eb80bec68a4895d2e5122226bfe6c83be554cf10e9aa2f829b7f7ad463e0"
+      },
+      {
+        "case": "already_completed_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "7654d91414da04a03cd197280f0e064cbdcf2db13ccc535a4bef97c5528d2497"
+      },
+      {
+        "case": "already_completed_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "da074e3fc406668a364183e63ea8214f01bb3fb68ca7ff921e7d2526f61100d2"
+      },
+      {
+        "case": "already_completed_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "9bb3dba4439a6fb215e3e4a6f64f7f232de2ba11e56f34d45cf741a71e7a96cc"
+      },
+      {
+        "case": "already_completed_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "d2f5a62effa4d3177d9d14dda21bcb30b01c45123da0a0bd28a04fbe03413b32"
+      },
+      {
+        "case": "already_completed_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "64ec95999ec5e8152502d347c184f5b7d411cc68538d54c236bf633e145f1d03"
+      },
+      {
+        "case": "already_completed_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "bdef6a544afe9e733e39a9b24c7b3f15339e00d4c4b6ffd017bf99b7c407f077"
+      },
+      {
+        "case": "already_completed_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "c3ddf7c6b3d5d72b7dd8fc8173d00fdd5946924cd3868745f2404890da3fa5e0"
+      },
+      {
+        "case": "already_completed_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "956777842bdd96b9f660f5a57d6be0480667e95d7fac3670dc865b9620656a66"
+      },
+      {
+        "case": "already_completed_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "123ac1e5951da07cd2a219591b01e46c579d505b15fedc9b35090375c36013b9"
+      },
+      {
+        "case": "already_completed_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "fc613e84e9787c0cad8c54c34e2f3b2fd09f237755cf581f4d9336b1fc776cb1"
+      },
+      {
+        "case": "already_completed_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "8080c85a9e5621c9c22d3a55aa6a8e02d6c466d8faee7f80ddb94d241556c3f7"
+      },
+      {
+        "case": "already_completed_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "fb8bf0ad5e75de61d8a83d5c42b33ef514dcaa55ae2eafd31869ed48bad0b9b8"
+      },
+      {
+        "case": "already_completed_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "cc2f96dd8f0a0d403cf36fda9988002fe8ce517bc4053086c4ab9b6504eab140"
+      },
+      {
+        "case": "already_completed_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "0e44bd4878e9640a781a8d46d5337e06ac91f602a6dee64110965e51e5c032f3"
+      },
+      {
+        "case": "already_completed_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "2ecb6e15b7e77befaca2856f033aac9a78eeeb2c7e16e16d19b38e03f34a0a25"
+      },
+      {
+        "case": "already_completed_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "4e4b2f2655b7cb0db639cd25b5988d0b595a35542fc12a3a7ab9ca5e9f1d2b8c"
+      },
+      {
+        "case": "already_completed_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "a95efe08c78b4d2b4da4326a9257c7cf05c93005ad85e53138df3f095808b7da"
+      },
+      {
+        "case": "already_completed_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "b1cbb1d32c855ae5c9ba232ddd8200c4a6efb6f98b0ae79f86f5934924b937e4"
+      },
+      {
+        "case": "already_completed_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "ac049bbc44fe319d0abfacd812bcd90d498506e39806b2d9aecbe9e015631531"
+      },
+      {
+        "case": "already_completed_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "2d69ff05dc7a82dac41b62d4c546fe7026263e2b55ae8a3c82cf0958f3e037bd"
+      },
+      {
+        "case": "lost_response_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "b7ebaa023b6815604db7d52af143b42154f5cc420883b4b0c736d3f40c395630"
+      },
+      {
+        "case": "lost_response_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "0bf7f8cb4563e49e23b2be7b704b3d9a19e5cfba294c87b1c7d2ff230e8d3289"
+      },
+      {
+        "case": "lost_response_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "aa76a37e7ce269d0fb230d78ad9a48301488fbc5920a926cd8b63dc7fd10bbc8"
+      },
+      {
+        "case": "lost_response_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "f7e525afa044097ead87b40c2fa42f4883c38e381a54edd937b26f6e2459f1cf"
+      },
+      {
+        "case": "lost_response_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "960b236ab58d3887806a955772c7e6589652797a872aa9d06e126da9d4a30fc5"
+      },
+      {
+        "case": "lost_response_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "f5676d4f107e75da02b3e2446eae771600ad5cb6a2e7864669ee45c5f7fa4f35"
+      },
+      {
+        "case": "lost_response_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "a1f5c8f984cec2d237c4f4e86613c41fa9478f4e53a0566b58894895695a2119"
+      },
+      {
+        "case": "lost_response_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "5d91c47a9f43ad932739da0fa46675379e531226246a61609c2773bdb9679569"
+      },
+      {
+        "case": "lost_response_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "b25368dcf89b27c865a86ac48fb1f2be7140fd350625fa1d136e95a54c14a411"
+      },
+      {
+        "case": "lost_response_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "cb4b8a40549e7f3e25a42fab98edf33fe5333a0f5eff10ad58290b8297d4b2f9"
+      },
+      {
+        "case": "lost_response_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "62b40c62bbc6790079fb090ddc43ab0b33363b7acb34991f55bbbdb9a710763f"
+      },
+      {
+        "case": "lost_response_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "8094a64c7524670a6b4cc1a01ce7e565a34007efef4209ed57318f56553328d1"
+      },
+      {
+        "case": "lost_response_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "c963a9ca03f97216b5debe59adf00effd50f3572b2a4af5255453dc2367a6c81"
+      },
+      {
+        "case": "lost_response_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "89d4e55b165d1a01935bccf1761fade58092373e89e8bae9accbcc4e74b0fa36"
+      },
+      {
+        "case": "lost_response_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "cfa916893a48b5e5a7da344a5375fed4a29bc5f25de2028f97a5479f3f80eae6"
+      },
+      {
+        "case": "lost_response_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "f6aab657a3e0688668fd78d0202326df2eb5c606876e9d05a96a47324cddbae6"
+      },
+      {
+        "case": "lost_response_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "07871c73bcbd4a32f3a1e83f4d252fb027ce17fe9526dd931cde984ecf00fe07"
+      },
+      {
+        "case": "lost_response_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "bc5c8683ac944bab22218b70c68f3d1fa8e6fc2a4caf15774b95ffdb00c66bed"
+      },
+      {
+        "case": "lost_response_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "2dced28b4bfdfc19fd6f874990404902f01f210c589db02513c3571abf9e15c2"
+      },
+      {
+        "case": "lost_response_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "8d4d336ec9377e9e5bd5d36446352feb4a9da4c8399ade1caa37155872ca264f"
+      },
+      {
+        "case": "read_timeout_0_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "39bdc0ac5aacd16ee537855a38f6a1f6818a3c97d8527b7adda1e347d5f09013"
+      },
+      {
+        "case": "read_timeout_0_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "c7f6191f71e23fda6313cb8f8e4d88af0e2f55322a251623a7dc5718cbfae71a"
+      },
+      {
+        "case": "read_timeout_0_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "2a15136935507dcc32ee3cc415828a2f51f9d7d28d6af2c706b491a368adaf38"
+      },
+      {
+        "case": "read_timeout_0_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "0b9a6919ae6785fb76abd61a83612d561ad14f2ec84cc230a3ad97c33ce6711d"
+      },
+      {
+        "case": "read_timeout_1_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "267348a96982ae5f8e0632f5de203d4928c28974bd83e01e4c5fde9ad46f2804"
+      },
+      {
+        "case": "read_timeout_1_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "5f7172b69553cce10e0ae5bb4bb6106b30053e252019d32c36516154841de7ed"
+      },
+      {
+        "case": "read_timeout_1_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "8c90b60ab7c498a9beaec0fe4b22054ad24fca6453548fe97e4a73a2f643d2fc"
+      },
+      {
+        "case": "read_timeout_1_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "521ccef5f97bd246a70c2cf86bffbcdcd586595322a85db86cfac2a5fd2c3ece"
+      },
+      {
+        "case": "read_timeout_2_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "cedd0f96a5ceb750c38de3b9721613ff6c8fdc46b7987121d8bc3a032b07c630"
+      },
+      {
+        "case": "read_timeout_2_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "20ab66442437c23c4b318922f85d56016d9f433a2b32649ccda53cf49474c4e9"
+      },
+      {
+        "case": "read_timeout_2_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "5ee14477b64a259ec75f2790e8d8bc5d5bb6f0a90e237c69ea48e80fb497994b"
+      },
+      {
+        "case": "read_timeout_2_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "db961586bbad6fbb4b27b2ea7f55dee3d0fd9d9c4a9f94d859661df2a87505bb"
+      },
+      {
+        "case": "read_timeout_3_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "3a076fc3aec49b45182dab3cf20f4a801d6aff8e76a713ad091d8b78f7c5e5be"
+      },
+      {
+        "case": "read_timeout_3_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "b5f7c4f6f1d111c6ee74e554e219f09b1f43faa567b2a434432c6fca8c6c53ec"
+      },
+      {
+        "case": "read_timeout_3_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "2cd2d72d5735b79a162f7241c8058be1e7eb69699e54800775b3858f4d1cecca"
+      },
+      {
+        "case": "read_timeout_3_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "d7fd4e027a61f57acdb13600c8a807448b13ba2c35a77a99f6a6e7b714737a1d"
+      },
+      {
+        "case": "read_timeout_4_reference",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "7614046e9af060a97f5fa12241a629b4ad8cd2c1b1f60af65728f0fb7ff47ec4"
+      },
+      {
+        "case": "read_timeout_4_reference/changed_fact",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "c42706a9fb3f68b57c5871d89445efd0ecba32b3a94890cd4412dd587dd070dc"
+      },
+      {
+        "case": "read_timeout_4_mutant",
+        "expected_unsafe": false,
+        "status": "pass",
+        "first_effect_localized": null,
+        "scenario_sha256": "9b80bbd6c000fc8ec050f647bd5853a5a51bb96b09a71f616e12c8b2b77027b0"
+      },
+      {
+        "case": "read_timeout_4_mutant/changed_fact",
+        "expected_unsafe": true,
+        "status": "fail",
+        "first_effect_localized": true,
+        "scenario_sha256": "3748616e45c4295978748897ab64acd7e6b9c3ace3d46f2c73c2b6bff6c8fc48"
+      }
+    ]
+  },
+  "performance": [
+    {
+      "runs": 100,
+      "fixture_bytes": 1159,
+      "elapsed_seconds": 0.2316519160522148,
+      "runs_per_second": 431.6821622034838,
+      "p50_ms": 2.208187594078481,
+      "p95_ms": 3.8006670074537396,
+      "peak_python_bytes_20_runs": 68397
+    },
+    {
+      "runs": 100,
+      "fixture_bytes": 65671,
+      "elapsed_seconds": 0.45707920799031854,
+      "runs_per_second": 218.78046135521902,
+      "p50_ms": 4.589041986037046,
+      "p95_ms": 6.008332944475114,
+      "peak_python_bytes_20_runs": 362311
+    },
+    {
+      "runs": 1000,
+      "fixture_bytes": 1159,
+      "elapsed_seconds": 2.432728083105758,
+      "runs_per_second": 411.0611485700217,
+      "p50_ms": 2.2679585381411016,
+      "p95_ms": 4.194625071249902,
+      "peak_python_bytes_20_runs": 77181
+    },
+    {
+      "runs": 1000,
+      "fixture_bytes": 65671,
+      "elapsed_seconds": 4.629182167002,
+      "runs_per_second": 216.02087883433427,
+      "p50_ms": 4.51016693841666,
+      "p95_ms": 6.3317910535261035,
+      "peak_python_bytes_20_runs": 367624
+    },
+    {
+      "runs": 10000,
+      "fixture_bytes": 1159,
+      "elapsed_seconds": 23.62235574994702,
+      "runs_per_second": 423.3278046378769,
+      "p50_ms": 2.2054584696888924,
+      "p95_ms": 4.124375060200691,
+      "peak_python_bytes_20_runs": 77181
+    },
+    {
+      "runs": 10000,
+      "fixture_bytes": 65671,
+      "elapsed_seconds": 47.291659916052595,
+      "runs_per_second": 211.45377467720516,
+      "p50_ms": 4.567124939057976,
+      "p95_ms": 6.485459045507014,
+      "peak_python_bytes_20_runs": 367625
+    }
+  ]
+}
