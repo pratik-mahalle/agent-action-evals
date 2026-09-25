@@ -25,7 +25,7 @@ Run your agent against controlled business state, inject tool failures, and chec
 
 A refund tool can succeed even when its response times out. An agent may retry, issue a second refund, and still tell the customer everything went well. Agent Action Evals records the tool's effect and the response the agent received, then checks the state and action history against your assertions.
 
-**Status:** `0.2.0a1`, an early prerelease. The local runner and offline examples work. Live model quality, external-team pilots, and production isolation are still release gates. See the [roadmap](ROADMAP.md).
+**Status:** [v0.2.0a1 — first alpha](https://github.com/pratik-mahalle/agent-action-evals/releases/tag/v0.2.0a1). The local runner and offline examples work. Live model quality, external-team pilots, and broader production isolation validation remain open. See the [roadmap](ROADMAP.md).
 
 The current focus is reusable fixtures, controlled tool failures, and assertions against business state. In a [local comparison with Failproof's SDK](docs/FAILPROOF_COMPARISON.md), both approaches detected the same three seeded failures with zero false alarms. Our potential advantage is less simulation plumbing; a broader product advantage remains unproven.
 
@@ -45,6 +45,9 @@ Runs start from fresh SQLite state. Reports include JSON, JSONL checkpoints, and
 ## Quickstart
 
 Requires **Python 3.11+**. Install from source:
+
+For the versioned wheel, source archive, and checksums, see the
+[release notes](docs/releases/v0.2.0a1.md).
 
 ```bash
 git clone https://github.com/pratik-mahalle/agent-action-evals.git

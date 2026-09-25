@@ -28,7 +28,7 @@ external-team/live-model validation remain future work.
 | P0.5 reproducibility | Scenario/configuration/source hashes, versions, seed/deadline metadata, immutable Docker image ID | Custom driver configuration must be declared; external service state is not captured |
 | P0.6 reporting | Versioned JSON envelope, JSONL checkpoints, JUnit classification, default payload redaction | Backward compatibility across future releases |
 | P0.7 attribution | Direct violating events and transitions are labeled; uncertain attribution remains explicit | Validate explanations on real production incidents |
-| P0.8 release | Public repository, private reporting, green hosted CI matrix, dependency lockfile, source/wheel builds, clean-wheel example, contributor/reporting docs | Publish a tagged release after pilot gates |
+| P0.8 release | Public repository, private reporting, green hosted CI matrix, dependency lockfile, source/wheel builds, clean-wheel example, contributor/reporting docs; v0.2.0a1 alpha release prepared | Validate external-team and live-model pilots before a stable release |
 | B1 evaluator | 160 labeled executions, 40 seeded unsafe cases detected, 0 false alarms | Eight parameterized templates provide conformance evidence, not broad generalization |
 | B2 live reliability | Shared live example and per-case repeated-run reports; offline graph run passes 100/100 | Model credentials, selected agent, held-out real cases |
 | B3 comparison | Pinned Failproof SDK component comparison: both detect 3/3 failures and pass 9/9 safe controls | Real-team setup study; hosted integration and other comparators remain untested |
@@ -97,7 +97,7 @@ Run a no-model microbenchmark with 100, 1,000, and 10,000 scenarios across small
 ## Decision gates
 
 1. **Technical pilot:** P0.1–P0.7 complete and the real agent can run without access to production systems.
-2. **First public release:** P0.8 complete; the evaluator correctness corpus and results are published with the package.
+2. **Public alpha:** versioned package artifacts, documented limitations, and reproducible evaluator correctness results. The v0.2.0a1 alpha packages the current offline-tested functionality; a stable release still requires real-agent and external-team validation.
 3. **Broader adoption:** two external teams can integrate and author scenarios, and the comparison shows a concrete reason to use this project alongside or instead of existing tools.
 
 If the comparison finds no meaningful incremental value, narrow the product to the paired scenario authoring layer or contribute that capability to an established project.
