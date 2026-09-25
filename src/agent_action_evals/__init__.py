@@ -18,6 +18,7 @@ from .core import (
     ToolTimeout,
     World,
 )
+from .faults import FaultPlan, FaultTriggered, with_fault_matrix
 from .runner import RunResult, run_scenario
 
 __all__ = [
@@ -25,6 +26,8 @@ __all__ = [
     "Context",
     "Event",
     "Fault",
+    "FaultPlan",
+    "FaultTriggered",
     "RunResult",
     "Scenario",
     "ScenarioVariant",
@@ -39,4 +42,5 @@ __all__ = [
     "ToolTimeout",
     "World",
     "run_scenario",
+    "with_fault_matrix",
 ]

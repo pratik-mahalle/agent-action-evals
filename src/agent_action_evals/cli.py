@@ -8,7 +8,16 @@ import sys
 from pathlib import Path
 
 from .core import Scenario
-from .reporting import SCHEMA_VERSION, serialize, summary, write_json, write_junit
+from .reporting import (
+    SCHEMA_VERSION,
+    explain,
+    serialize,
+    summary,
+    text_report,
+    write_json,
+    write_junit,
+    write_text,
+)
 from .runner import run_scenario
 from .validation import prepare_case
 
@@ -56,11 +65,16 @@ async def _run(scenarios, args):
                         seed=args.seed + repeat,
                     )
                     results.append(result)
-                    print(f"{result.status.upper()} {result.case_id} [{result.run_id[:8]}]")
-                    for finding in result.findings:
-                        print(f"  {finding.rule}; event {finding.event_seq}; {finding.attribution}")
-                    if args.include_payloads and result.error:
-                        print(f"  {result.error}")
+                    if args.explain and not result.passed:
+                        print(explain(result, args.scenarios, args.include_payloads))
+                    else:
+                        print(f"{result.status.upper()} {result.case_id} [{result.run_id[:8]}]")
+                        for finding in result.findings:
+                            print(
+                                f"  {finding.rule}; event {finding.event_seq}; {finding.attribution}"
+                            )
+                        if args.include_payloads and result.error:
+                            print(f"  {result.error}")
                     if stream:
                         stream.write(json.dumps(serialize(result, args.include_payloads)) + "\n")
                         stream.flush()
@@ -76,6 +90,9 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description="Run stateful agent action evaluations")
     parser.add_argument("scenarios", type=Path, help="Trusted Python file exporting SCENARIOS")
     parser.add_argument("--validate", action="store_true", help="Validate without invoking agents")
+    parser.add_argument(
+        "--list-cases", action="store_true", help="List cases without invoking agents"
+    )
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--case", help="Select a case by its full ID")
     parser.add_argument("--seed", type=int, default=0)
@@ -83,12 +100,26 @@ def main(argv=None):
     parser.add_argument("--json", type=Path)
     parser.add_argument("--jsonl", type=Path, help="Checkpoint each completed run")
     parser.add_argument("--junit", type=Path)
+    parser.add_argument(
+        "--explain", action="store_true", help="Show evidence and reruns for failures"
+    )
+    parser.add_argument("--text", type=Path, help="Write a readable summary and failure timelines")
     parser.add_argument("--include-payloads", action="store_true")
     args = parser.parse_args(argv)
     if args.repeat < 1:
         parser.error("--repeat must be positive")
     try:
         scenarios = load_scenarios(args.scenarios)
+        cases = [
+            scenario.id + (f"/{variant_id}" if variant_id else "")
+            for scenario in scenarios
+            for variant_id in (None, *(v.id for v in scenario.variants))
+        ]
+        if args.case and args.case not in cases:
+            raise ValueError("No cases matched --case")
+        if args.list_cases:
+            print("\n".join(case for case in cases if not args.case or case == args.case))
+            return 0
         if args.validate:
             print(f"Validated {len(scenarios)} scenarios and all their variants")
             return 0
@@ -104,6 +135,8 @@ def main(argv=None):
             )
         if args.junit:
             write_junit(args.junit, results, args.include_payloads)
+        if args.text:
+            write_text(args.text, text_report(results, args.scenarios, args.include_payloads))
     except (OSError, ValueError, TypeError, AttributeError, ImportError) as exc:
         parser.error(str(exc))
     print(f"{sum(r.passed for r in results)}/{len(results)} runs passed")

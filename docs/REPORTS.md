@@ -15,3 +15,39 @@ Events distinguish `tool_attempt`, `tool_executed`, `tool_observation`, `tool_fa
 Findings include `event_seq` and `attribution`. `direct` means the violating event is observed. `direct_transition` means a state value changed away from an already satisfied assertion. `unavailable` means the tool cannot attribute a first cause; the UI must preserve this uncertainty. Final-state equality alone cannot detect temporary unsafe effects that were later repaired: add a precondition or event assertion for that behavior.
 
 Per-case reports include observed pass counts/rates and Wilson intervals. Repeats are not a guarantee of independence; the interval describes the sampled cases and configuration. Keep cases separate when aggregating model results.
+
+## Fault coverage
+
+Run manifests now include an additive `faults` list. Each item records the tool,
+fault kind, per-tool call number, and whether the injection actually fired. Stale
+observation values are omitted. Fault events include their `call_number`.
+These additions preserve report schema version 1.0; consumers should tolerate
+new fields.
+
+Generated variants include a `FaultTriggered` assertion. An unexercised injection
+is a `fail` with a `fault coverage[...]` finding, `actual="not reached"` in full
+payload mode, and no attributed event. It is a coverage failure, not evidence of
+an unsafe effect. Handwritten faults only acquire this assertion when explicitly
+added; their activation is still recorded in the manifest.
+
+## Readable reports
+
+`--explain` prints a timeline for each failed, errored, or timed-out run. `--text
+PATH` atomically writes a plain-text summary, injection coverage, case outcomes,
+and failure details. It requires no extra dependency or browser.
+
+The timeline distinguishes attempts, execution, observations, rejected calls,
+injected faults, and agent completion. `!` marks an event referenced by a finding;
+it does not assert an underlying root cause. Unavailable attribution stays
+explicit. Default output includes the number of changed state fields but omits
+their names and values, arguments, results, and agent output. Assertion paths and
+registered tool names remain public metadata, as in JSON reports.
+
+`--include-payloads` adds escaped values, with each value limited to 600 characters
+in text. Use JSON with payloads enabled for untruncated evidence. Neither raw
+agent configuration nor arbitrary agent metadata is rendered in the text report.
+
+Rerun commands select the original case, seed, and timeout against the same local
+scenario path. Use the project's Python environment. The displayed scenario hash
+helps identify source/configuration changes; the command does not restore old
+code or force deterministic live model responses.

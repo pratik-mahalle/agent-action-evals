@@ -1,16 +1,23 @@
 # Production and benchmark plan
 
-**Status:** Proposed work plan, 25 September 2026
+**Status:** Work plan updated 26 September 2026
 
 **Target:** A public Python package that external teams can run safely and repeatably in CI against their own agents.
 
-The core suite passes across the hosted Python/OS matrix, including the two real Docker checks on Linux ([CI evidence](https://github.com/pratik-mahalle/agent-action-evals/actions/runs/36164942542)). The ten-case LangGraph example passes 100/100 offline runs. A local comparison with the pinned Failproof SDK detects the same three seeded failures in both implementations, with nine safe controls and no false alarms. The current local suite passes 47 tests with the upstream checkout configured; two Docker checks are skipped locally. Live model quality, hosted Failproof integration, and external-team adoption remain unverified.
+The core suite passed the hosted Python/OS matrix, including the two real Docker checks on Linux ([CI evidence](https://github.com/pratik-mahalle/agent-action-evals/actions/runs/36164942542)). The ten-case LangGraph example passes 100/100 offline runs. A local comparison with the pinned Failproof SDK detects the same three seeded failures in both implementations, with nine safe controls and no false alarms. The updated local suite passes 74 tests with the upstream checkout configured; two Docker checks are skipped locally. The new refund pack passes 56/56 offline runs across Python and LangGraph. Live model quality, hosted Failproof integration, and external-team adoption remain unverified.
 
 ## Scope decision after the Failproof comparison
 
 Focus on reusable fault-injection fixtures, state assertions, and adapters into existing evaluation workflows. The [comparison](docs/FAILPROOF_COMPARISON.md) demonstrated equivalent detection on three synthetic families. Reduced simulation setup is the next hypothesis to validate with two external teams. Broader platform work should wait for that evidence.
 
 ## Implementation status
+
+The first adoption milestone is implemented: a reusable 14-case refund pack,
+custom tool/state bindings, bounded automatic fault-case generation, explicit
+injection coverage, and readable failure reports with rerun commands. Python and
+offline LangGraph examples share the pack. See [the guide](docs/SCENARIO_PACKS.md).
+Booking/account-access packs, pytest integration, baseline comparisons, and
+external-team/live-model validation remain future work.
 
 | Area | Implemented and checked | Remaining gate |
 | --- | --- | --- |

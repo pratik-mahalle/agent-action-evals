@@ -160,6 +160,9 @@ def prepare_case(scenario: Scenario, variant_id: str | None):
             spec = scenario.specifications.get(fault.tool)
             if fault.kind == "stale_read" and spec and not spec.read_only:
                 raise ValueError("stale_read requires a read-only tool")
+            if fault.kind == "stale_read" and spec and spec.result_schema is not None:
+                if not Draft202012Validator(spec.result_schema).is_valid(fault.value):
+                    raise ValueError("stale_read value does not match the tool result schema")
         if variant_id == case_variant:
             selected = case
     if selected is None:

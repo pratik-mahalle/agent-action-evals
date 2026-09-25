@@ -2,6 +2,11 @@
 
 ## 0.2.0a1 — unreleased
 
+- Add a reusable 14-case refund pack with custom tool, schema, and state bindings.
+- Generate bounded fault matrices with stable IDs and explicit fault-activation assertions.
+- Add readable failure timelines, local rerun commands, text artifacts, and case discovery.
+- Record fault activation in run manifests and validate stale observations against result schemas.
+
 - Validate scenarios, schemas, assertions, and variants before invoking an agent.
 - Keep rejected calls and contract violations in the verdict even when caught by the agent.
 - Record committed effects on handler errors and cooperative cancellation; seal finished worlds.

@@ -70,6 +70,42 @@ PASS refund_order/response_lost_after_refund [<run-id>]
 
 The first case issues a refund. The second changes the caller to unverified and expects no refund. The third loses the refund response after the state changes, so the agent must recover without issuing another refund.
 
+## Reusable refund pack and generated fault cases
+
+Start with **14 ready-made cases** covering authorization, eligibility, stale
+reads, read failures at different calls, and safe refund recovery:
+
+```bash
+agent-action-evals examples/refund_pack.py --list-cases
+agent-action-evals examples/refund_pack.py --repeat 2 \
+  --text /tmp/refund-report.txt --json /tmp/refund-report.json
+```
+
+The offline example should pass **28/28 runs**. Use
+`examples/langgraph_refund_pack.py` for the same pack with the existing LangGraph
+demo. A `RefundFixture` maps the pack to your tool names, schemas, handlers, and
+business-state paths.
+
+For other domains, `with_fault_matrix(base, FaultPlan("your_tool"))` generates
+timeout and lost-response variants. Configure call positions, expected outcomes,
+and explicit stale observations as needed. A generated case fails with a coverage
+finding if the intended fault never fires.
+
+To inspect a deliberately broken retry policy:
+
+```bash
+agent-action-evals examples/refund_pack_unsafe.py \
+  --case unsafe_refund/fault-issue_refund-response_lost_after_commit-call-1 \
+  --explain --include-payloads
+```
+
+This synthetic example should exit **1** and identify the duplicate refund.
+Reports show the timeline, findings, fault coverage, and a rerun command.
+Payloads stay redacted unless explicitly enabled.
+
+Read the [scenario pack and fault matrix guide](docs/SCENARIO_PACKS.md) for the
+policy, custom bindings, generation limits, and failure-report walkthrough.
+
 ## How it works
 
 ```mermaid
@@ -169,9 +205,11 @@ agent-action-evals examples/refund_scenarios.py --repeat 3 \
 | Option | Purpose |
 | --- | --- |
 | `--case refund_order/unverified_caller` | Run one case |
+| `--list-cases` | List authored and generated cases without invoking agents |
 | `--repeat 10` | Run each selected case ten times with fresh state |
 | `--timeout 30` | Set the cooperative deadline for each run, in seconds |
 | `--json` / `--jsonl` / `--junit` | Export aggregate reports, checkpoints, or test results |
+| `--explain` / `--text` | Print failure timelines or save a readable report with rerun commands |
 | `--include-payloads` | Include raw tool values, model output, state, and error details |
 
 Exit codes: **0** for all passing, **1** for assertion failures, **2** for configuration errors, execution errors, or timeouts. Payloads are redacted by default. Reports include per-case pass counts and confidence intervals; see the [report contract](docs/REPORTS.md).
@@ -185,9 +223,10 @@ The recorded results measure the evaluator and the scripted integrations:
 | Synthetic evaluator corpus | 40/40 seeded unsafe cases detected; 0 false alarms; 0 runner errors | 160 labeled executions across 40 paired tasks from eight behavior templates |
 | Failure attribution | 40/40 first wrong effects localized | The same synthetic corpus |
 | Offline LangGraph | 100/100 passing runs | Ten fixed-policy cases, repeated ten times |
+| Reusable refund pack | 56/56 passing runs | Fourteen cases, twice each with the scripted Python and LangGraph policies |
 | Failproof SDK comparison | Both detected 3/3 unsafe runs and passed 9/9 safe controls | Same policies and matching tool observations; custom state telemetry supplied to Failproof |
 | Small-fixture runner overhead | p50 **2.205 ms**, p95 **4.124 ms** | 10,000 local runs; 1,159-byte fixture; no model calls |
-| Test suite | Core CI matrix passes; 47 local tests pass with comparison configured | Runner, adapters, reports, and pinned SDK comparison; Docker checks pass separately in Linux CI |
+| Test suite | 74 local tests pass with comparison configured | Runner, adapters, packs, fault matrices, reports, and pinned SDK comparison; two Docker checks require a daemon |
 
 Read the [synthetic methodology and full results](benchmarks/results/local.md) and [offline LangGraph results](benchmarks/results/langgraph-offline.md). The synthetic corpus has parameterized cases; its score does not establish reliability on unseen agents or live models. Timings are specific to the recorded machine and workload.
 
@@ -229,6 +268,7 @@ Useful contributions include realistic failure scenarios, adapters for existing 
 | [Architecture](ARCHITECTURE.md) | Original design, interfaces, and decisions |
 | [Roadmap](ROADMAP.md) | Implemented work and remaining production gates |
 | [LangGraph guide](docs/LANGGRAPH_EXAMPLE.md) | Offline and live examples |
+| [Scenario packs](docs/SCENARIO_PACKS.md) | Refund fixtures, tool/state mappings, automatic fault cases |
 | [Report contract](docs/REPORTS.md) | Artifacts, redaction, and exit statuses |
 | [Failproof comparison](docs/FAILPROOF_COMPARISON.md) | Reproducible component comparison and product-scope decision |
 | [Changelog](CHANGELOG.md) | Changes in the current prerelease |

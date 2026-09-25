@@ -29,6 +29,8 @@ jobs:
       - run: python -m build
       - run: python -m agent_action_evals examples/refund_scenarios.py --repeat 3 --json report.json --junit report.xml
       - run: python -m agent_action_evals examples/langgraph_refund_demo.py --repeat 3 --json langgraph-offline.json --junit langgraph-offline.xml
+      - run: python -m agent_action_evals examples/refund_pack.py --repeat 2 --text refund-pack.txt --json refund-pack.json
+      - run: python -m agent_action_evals examples/langgraph_refund_pack.py --repeat 2 --text langgraph-refund-pack.txt
   container:
     runs-on: ubuntu-latest
     steps:

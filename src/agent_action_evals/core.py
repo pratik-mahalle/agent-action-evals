@@ -147,10 +147,10 @@ class ToolPort:
         canonical(arguments)
         fault = next((f for f in self.faults if f.tool == name and f.on_call == call_number), None)
         if fault and fault.kind == "timeout_before":
-            self.record("tool_fault", name, fault_kind=fault.kind)
+            self.record("tool_fault", name, fault_kind=fault.kind, call_number=call_number)
             raise ToolTimeout(name)
         if fault and fault.kind == "stale_read":
-            self.record("tool_fault", name, fault_kind=fault.kind)
+            self.record("tool_fault", name, fault_kind=fault.kind, call_number=call_number)
             self.record("tool_observation", name, result=fault.value)
             return copy.deepcopy(fault.value)
 
@@ -184,7 +184,7 @@ class ToolPort:
             if not Draft202012Validator(spec.result_schema).is_valid(result):
                 self.reject(name, "tool result schema violation", ToolSchemaError)
         if fault and fault.kind == "response_lost_after_commit":
-            self.record("tool_fault", name, fault_kind=fault.kind)
+            self.record("tool_fault", name, fault_kind=fault.kind, call_number=call_number)
             raise ToolResponseLost(name)
         self.record("tool_observation", name, result=result)
         return copy.deepcopy(result)

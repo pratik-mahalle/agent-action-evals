@@ -95,6 +95,21 @@ async def run_scenario(
             "agent_config": dict(scenario.metadata),
             "agent_metadata": response_metadata,
             "isolation": getattr(scenario.driver, "isolation", "trusted_in_process"),
+            "faults": [
+                {
+                    "tool": fault.tool,
+                    "kind": fault.kind,
+                    "on_call": fault.on_call,
+                    "triggered": any(
+                        event.kind == "tool_fault"
+                        and event.tool == fault.tool
+                        and event.details.get("fault_kind") == fault.kind
+                        and event.details.get("call_number") == fault.on_call
+                        for event in tools.events
+                    ),
+                }
+                for fault in faults
+            ],
         }
         return RunResult(
             scenario.id,
