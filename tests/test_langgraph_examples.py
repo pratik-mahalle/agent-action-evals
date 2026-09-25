@@ -23,11 +23,17 @@ LIVE = ROOT / "examples/langgraph_refund.py"
 def offline(monkeypatch):
     monkeypatch.syspath_prepend(str(DEMO.parent))
 
-    def no_network(*args, **kwargs):
-        raise AssertionError("The offline example must not access the network")
+    def guard(original):
+        def connect(sock, address):
+            # Windows asyncio builds its internal socketpair over TCP loopback.
+            if isinstance(address, tuple) and address[0] in {"127.0.0.1", "::1"}:
+                return original(sock, address)
+            raise AssertionError("The offline example must not access external networks")
 
-    monkeypatch.setattr(socket.socket, "connect", no_network)
-    monkeypatch.setattr(socket.socket, "connect_ex", no_network)
+        return connect
+
+    monkeypatch.setattr(socket.socket, "connect", guard(socket.socket.connect))
+    monkeypatch.setattr(socket.socket, "connect_ex", guard(socket.socket.connect_ex))
     return importlib.import_module("langgraph_refund_demo")
 
 
