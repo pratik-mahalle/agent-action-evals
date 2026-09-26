@@ -1,6 +1,6 @@
 # Security reporting
 
-This is a prerelease package. Only run scenario definitions and tool handlers you trust. See [the execution boundary](docs/ISOLATION.md) for supported isolation modes and limitations.
+Only run scenario definitions and tool handlers you trust. See [the execution boundary](docs/ISOLATION.md) for supported isolation modes and limitations.
 
 Report suspected vulnerabilities privately through [GitHub's vulnerability reporting form](https://github.com/pratik-mahalle/agent-action-evals/security/advisories/new). Private vulnerability reporting is enabled for this repository.
 

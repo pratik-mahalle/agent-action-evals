@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.0 — 2026-09-26
+
+First stable release. See the [release notes](docs/releases/v1.0.0.md).
+
+- Publish v1.0.0 packages and a regular GitHub release, marked as the latest release.
+- Establish the documented public API and report compatibility policy for 1.x.
+- Update installation commands and current documentation to the stable version.
+- Carry forward the tested tool-boundary wrappers, fault injection, traces,
+  scenario runner, and integrations from v0.3.0a1 with no runtime API changes.
+- Keep the optional receipt-verification helper explicitly experimental and
+  retain the published benchmark scope and known execution limits.
+
 ## 0.3.0a1 — 2026-09-26
 
 Test existing tools with boundary fault injection. See the

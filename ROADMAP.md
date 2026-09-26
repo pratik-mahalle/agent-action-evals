@@ -1,6 +1,6 @@
 # Production and benchmark plan
 
-**Status:** Work plan updated 26 September 2026
+**Status:** v1.0.0 release plan, updated 26 September 2026
 
 **Target:** A public Python package that external teams can run safely and repeatably in CI against their own agents.
 
@@ -11,6 +11,14 @@ The first-alpha core suite passed the hosted Python/OS matrix, including the two
 Focus on reusable fault-injection fixtures, state assertions, and adapters into existing evaluation workflows. The [comparison](docs/FAILPROOF_COMPARISON.md) demonstrated equivalent detection on three synthetic families. Reduced simulation setup is the next hypothesis to validate with two external teams. Broader platform work should wait for that evidence.
 
 ## Implementation status
+
+### v1.0.0: stable release
+
+The tested tool-boundary wrappers, scenario runner, adapters, and report contracts
+from v0.3.0a1 are packaged as v1.0.0. The [compatibility policy](docs/COMPATIBILITY.md)
+defines the public API scope for 1.x; receipt verification remains explicitly
+experimental. Native service adapters and external-team pilots remain follow-up
+validation milestones. The release designation does not add new benchmark evidence.
 
 ### v0.3.0a1: test existing tools
 
@@ -60,7 +68,7 @@ external-team/live-model validation remain future work.
 | P0.5 reproducibility | Scenario/configuration/source hashes, versions, seed/deadline metadata, immutable Docker image ID | Custom driver configuration must be declared; external service state is not captured |
 | P0.6 reporting | Versioned JSON envelope, JSONL checkpoints, JUnit classification, default payload redaction | Backward compatibility across future releases |
 | P0.7 attribution | Direct violating events and transitions are labeled; uncertain attribution remains explicit | Validate explanations on real production incidents |
-| P0.8 release | Public repository, private reporting, green hosted CI matrix, dependency lockfile, source/wheel builds, clean-wheel example, contributor/reporting docs; v0.2.0a1 alpha release prepared | Validate external-team and live-model pilots before a stable release |
+| P0.8 release | Public repository, private reporting, hosted CI matrix, dependency lockfile, source/wheel builds, clean-wheel checks, contributor/reporting docs, and v1.0.0 release packaging | Validate native-service integrations and external-team pilots |
 | B1 evaluator | 160 labeled executions, 40 seeded unsafe cases detected, 0 false alarms | Eight parameterized templates provide conformance evidence, not broad generalization |
 | B2 live reliability | Shared live example; offline graph passes 100/100; live Jev/custom-D1 check passes 18/18 verified trials | A team's existing agent, native service adapters, held-out real cases |
 | B3 comparison | Pinned Failproof SDK component comparison: both detect 3/3 failures and pass 9/9 safe controls | Real-team setup study; hosted integration and other comparators remain untested |
@@ -129,7 +137,7 @@ Run a no-model microbenchmark with 100, 1,000, and 10,000 scenarios across small
 ## Decision gates
 
 1. **Technical pilot:** P0.1–P0.7 complete and the real agent can run without access to production systems.
-2. **Public alpha:** versioned package artifacts, documented limitations, and reproducible evaluator correctness results. The v0.2.0a1 alpha packages the current offline-tested functionality; a stable release still requires real-agent and external-team validation.
+2. **Versioned release:** publish tested package artifacts, documented limitations, and reproducible evaluator correctness results. v1.0.0 establishes the documented public compatibility scope; real-agent and external-team validation remain explicit adoption milestones.
 3. **Broader adoption:** two external teams can integrate and author scenarios, and the comparison shows a concrete reason to use this project alongside or instead of existing tools.
 
 If the comparison finds no meaningful incremental value, narrow the product to the paired scenario authoring layer or contribute that capability to an established project.

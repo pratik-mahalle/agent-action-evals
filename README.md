@@ -6,7 +6,7 @@
   <a href="https://github.com/pratik-mahalle/agent-action-evals/actions/workflows/ci.yml"><img src="https://github.com/pratik-mahalle/agent-action-evals/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
   <a href="pyproject.toml"><img src="https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&amp;logoColor=white" alt="Python 3.11 or newer" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-CAE989?labelColor=17231B" alt="MIT license" /></a>
-  <a href="ROADMAP.md"><img src="https://img.shields.io/badge/status-alpha-E8AA77?labelColor=17231B" alt="Alpha prerelease" /></a>
+  <a href="https://github.com/pratik-mahalle/agent-action-evals/releases/tag/v1.0.0"><img src="https://img.shields.io/badge/release-v1.0.0-CAE989?labelColor=17231B" alt="Stable release v1.0.0" /></a>
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@ Run your agent against controlled business state, inject tool failures, and chec
 
 A refund tool can succeed even when its response times out. An agent may retry, issue a second refund, and still tell the customer everything went well. Agent Action Evals records the tool's effect and the response the agent received, then checks the state and action history against your assertions.
 
-**Status:** [v0.3.0a1 — test existing tools](https://github.com/pratik-mahalle/agent-action-evals/releases/tag/v0.3.0a1). Wrap Python functions and LangGraph tools to inject failures and observe recovery. A live Jev/D1 integration check is recorded; existing-service adapters, external-team pilots, and broader production isolation validation remain open. See the [roadmap](ROADMAP.md).
+**Latest release:** [v1.0.0](https://github.com/pratik-mahalle/agent-action-evals/releases/tag/v1.0.0). Wrap Python functions and LangGraph tools to inject failures and observe recovery. A live Jev/D1 integration check is recorded; existing-service adapters, external-team pilots, and broader production isolation validation remain open. See the [compatibility policy](docs/COMPATIBILITY.md) and [roadmap](ROADMAP.md).
 
 The current focus is reusable fixtures, controlled tool failures, and assertions against business state. In a [local comparison with Failproof's SDK](docs/FAILPROOF_COMPARISON.md), both approaches detected the same three seeded failures with zero false alarms. Our potential advantage is less simulation plumbing; a broader product advantage remains unproven.
 
@@ -44,13 +44,17 @@ Runs start from fresh SQLite state. Reports include JSON, JSONL checkpoints, and
 
 ## Quickstart
 
-Requires **Python 3.11+**. Install from source:
-
-For the versioned wheel, source archive, and checksums, see the
-[release notes](docs/releases/v0.3.0a1.md).
+Requires **Python 3.11+**. Install the versioned package:
 
 ```bash
-git clone https://github.com/pratik-mahalle/agent-action-evals.git
+python -m pip install https://github.com/pratik-mahalle/agent-action-evals/releases/download/v1.0.0/agent_action_evals-1.0.0-py3-none-any.whl
+```
+
+For the versioned wheel, source archive, and checksums, see the
+[release notes](docs/releases/v1.0.0.md). To run the examples, install from source:
+
+```bash
+git clone --branch v1.0.0 --depth 1 https://github.com/pratik-mahalle/agent-action-evals.git
 cd agent-action-evals
 
 python3 -m venv .venv
@@ -221,7 +225,7 @@ wrapper trace alone does not prove an external service committed an effect.
 
 ## Experimental: verify tool outcomes during execution
 
-This alpha also includes an **experimental, opt-in verification layer**.
+The package also includes an **experimental, opt-in verification layer**.
 Declare the expected business effect, supply an operation-status tool, and return
 structured evidence to the agent. Successful responses are verified; uncertain
 results remain `unknown`. Bounded retries require a declared service idempotency
@@ -328,7 +332,8 @@ Useful contributions include realistic failure scenarios, adapters for existing 
 | [Scenario packs](docs/SCENARIO_PACKS.md) | Refund fixtures, tool/state mappings, automatic fault cases |
 | [Report contract](docs/REPORTS.md) | Artifacts, redaction, and exit statuses |
 | [Failproof comparison](docs/FAILPROOF_COMPARISON.md) | Reproducible component comparison and product-scope decision |
-| [Changelog](CHANGELOG.md) | Changes in the current prerelease |
+| [Changelog](CHANGELOG.md) | Changes in each release |
+| [Compatibility](docs/COMPATIBILITY.md) | Public API scope and versioning policy |
 
 ## License
 
