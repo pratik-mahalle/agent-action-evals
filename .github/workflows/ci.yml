@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install -e ".[dev,langgraph]"
+      - run: python -m pip install -e ".[dev,langgraph,live]"
       - run: ruff check src tests examples benchmarks
       - run: ruff format --check src tests examples benchmarks
       - run: python -m pytest -q
@@ -31,6 +31,10 @@ jobs:
       - run: python -m agent_action_evals examples/langgraph_refund_demo.py --repeat 3 --json langgraph-offline.json --junit langgraph-offline.xml
       - run: python -m agent_action_evals examples/refund_pack.py --repeat 2 --text refund-pack.txt --json refund-pack.json
       - run: python -m agent_action_evals examples/langgraph_refund_pack.py --repeat 2 --text langgraph-refund-pack.txt
+      - run: python -m agent_action_evals examples/verified_refund.py --repeat 2 --json verified-refund.json
+      - run: python -m agent_action_evals examples/langgraph_verified_refund.py --repeat 2 --json langgraph-verified-refund.json
+      - run: python benchmarks/verification.py --repeat 2 --output verification-benchmark.json
+      - run: python examples/wrapped_sqlite_tool.py
   container:
     runs-on: ubuntu-latest
     steps:

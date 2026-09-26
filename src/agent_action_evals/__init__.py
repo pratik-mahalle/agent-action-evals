@@ -1,5 +1,6 @@
 """Stateful action-boundary tests for tool-using agents."""
 
+from .boundary import ToolBoundary
 from .core import (
     AgentResult,
     Context,
@@ -20,6 +21,15 @@ from .core import (
 )
 from .faults import FaultPlan, FaultTriggered, with_fault_matrix
 from .runner import RunResult, run_scenario
+from .verification import (
+    Operation,
+    RecoveryPolicy,
+    ToolContract,
+    ToolOutcome,
+    execute_verified,
+    public_tool_error,
+    request_fingerprint,
+)
 
 __all__ = [
     "AgentResult",
@@ -28,13 +38,18 @@ __all__ = [
     "Fault",
     "FaultPlan",
     "FaultTriggered",
+    "Operation",
+    "RecoveryPolicy",
     "RunResult",
     "Scenario",
     "ScenarioVariant",
     "StateEquals",
     "ToolCallCount",
+    "ToolBoundary",
     "ToolCallOrder",
     "ToolClient",
+    "ToolContract",
+    "ToolOutcome",
     "ToolPrecondition",
     "ToolSpec",
     "ToolPort",
@@ -42,5 +57,8 @@ __all__ = [
     "ToolTimeout",
     "World",
     "run_scenario",
+    "execute_verified",
+    "public_tool_error",
+    "request_fingerprint",
     "with_fault_matrix",
 ]

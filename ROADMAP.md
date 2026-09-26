@@ -4,13 +4,45 @@
 
 **Target:** A public Python package that external teams can run safely and repeatably in CI against their own agents.
 
-The core suite passed the hosted Python/OS matrix, including the two real Docker checks on Linux ([CI evidence](https://github.com/pratik-mahalle/agent-action-evals/actions/runs/36164942542)). The ten-case LangGraph example passes 100/100 offline runs. A local comparison with the pinned Failproof SDK detects the same three seeded failures in both implementations, with nine safe controls and no false alarms. The updated local suite passes 74 tests with the upstream checkout configured; two Docker checks are skipped locally. The new refund pack passes 56/56 offline runs across Python and LangGraph. Live model quality, hosted Failproof integration, and external-team adoption remain unverified.
+The first-alpha core suite passed the hosted Python/OS matrix, including the two real Docker checks on Linux ([CI evidence](https://github.com/pratik-mahalle/agent-action-evals/actions/runs/36164942542)). The ten-case LangGraph example passes 100/100 offline runs. A recorded local comparison with the pinned Failproof SDK detects the same three seeded failures in both implementations, with nine safe controls and no false alarms. The v0.3.0a1 suite passes 130 local tests; the optional upstream comparison and two Docker checks are skipped in this environment. The original refund pack passes 56/56 offline runs across Python and LangGraph. The verification benchmark passes 120/120 authored scenarios in each verified adapter. A separate live Jev/custom-D1 integration check passed 18/18 verified trials. Existing-service adapters, hosted comparison integration, and external-team adoption remain unverified.
 
 ## Scope decision after the Failproof comparison
 
 Focus on reusable fault-injection fixtures, state assertions, and adapters into existing evaluation workflows. The [comparison](docs/FAILPROOF_COMPARISON.md) demonstrated equivalent detection on three synthetic families. Reduced simulation setup is the next hypothesis to validate with two external teams. Broader platform work should wait for that evidence.
 
 ## Implementation status
+
+### v0.3.0a1: test existing tools
+
+`ToolBoundary.wrap()` now instruments existing sync/async Python callables without
+requiring a `World` or receipt contract. `wrap_tool_node()` uses native LangGraph
+hooks to retain tool schemas, runtime injection, artifacts, and outputs. Both
+record attempts, repeated inputs, observations, and fault coverage; neither
+implements agent recovery. The [guide](docs/TOOL_BOUNDARY.md) covers the interface
+and limits. A local SQLite example checks an actual commit after response loss.
+
+Next: add an independent external-state observer and the first real GitHub Issues
+scenario pack, connect standalone boundary traces to pytest/CLI evaluation, then
+validate a developer's existing agent. The live Jev/D1 result is an integration
+smoke test; it does not complete this real-tool adoption milestone.
+
+### v0.3.0a1: optional operation verification
+
+An opt-in `execute_verified()` layer now correlates authoritative status receipts
+to persistent operation IDs and request fingerprints, checks declared business
+effects, and returns structured outcomes. Recovery is bounded and write retries
+require an explicit service idempotency guarantee. The original LangGraph error
+handler now exposes identical observations for both ambiguous timeout cases.
+
+Twelve synthetic cases run through both Python and a real LangGraph ToolNode.
+The [verification benchmark](benchmarks/results/verification.md) compares those
+policies with a response-trusting scripted baseline. The
+[guide](docs/VERIFICATION.md) documents the receipt contract, persistence duties,
+retry windows, cancellation, and limits. A live Jev/custom-D1 integration check
+is recorded separately. Existing-service adapters, durable application integration,
+and production-team validation remain open.
+
+### First alpha
 
 The first adoption milestone is implemented: a reusable 14-case refund pack,
 custom tool/state bindings, bounded automatic fault-case generation, explicit
@@ -30,7 +62,7 @@ external-team/live-model validation remain future work.
 | P0.7 attribution | Direct violating events and transitions are labeled; uncertain attribution remains explicit | Validate explanations on real production incidents |
 | P0.8 release | Public repository, private reporting, green hosted CI matrix, dependency lockfile, source/wheel builds, clean-wheel example, contributor/reporting docs; v0.2.0a1 alpha release prepared | Validate external-team and live-model pilots before a stable release |
 | B1 evaluator | 160 labeled executions, 40 seeded unsafe cases detected, 0 false alarms | Eight parameterized templates provide conformance evidence, not broad generalization |
-| B2 live reliability | Shared live example and per-case repeated-run reports; offline graph run passes 100/100 | Model credentials, selected agent, held-out real cases |
+| B2 live reliability | Shared live example; offline graph passes 100/100; live Jev/custom-D1 check passes 18/18 verified trials | A team's existing agent, native service adapters, held-out real cases |
 | B3 comparison | Pinned Failproof SDK component comparison: both detect 3/3 failures and pass 9/9 safe controls | Real-team setup study; hosted integration and other comparators remain untested |
 | B4 overhead | 100/1,000/10,000-run measurements at two fixture sizes | External-team usability pilots |
 

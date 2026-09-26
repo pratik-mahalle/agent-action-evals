@@ -1,0 +1,17 @@
+{
+  "unauthenticated_http_status": 401,
+  "concurrent_same_id_statuses": [
+    200,
+    200
+  ],
+  "changed_payload_http_status": 409,
+  "original_order_state": {
+    "refund_count": 1,
+    "refunded_cents": 500
+  },
+  "conflicting_order_state": {
+    "refund_count": 0,
+    "refunded_cents": 0
+  },
+  "model_calls": 0
+}

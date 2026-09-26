@@ -8,7 +8,7 @@ resolution-markers = [
 
 [[package]]
 name = "agent-action-evals"
-version = "0.2.0a1"
+version = "0.3.0a1"
 source = { editable = "." }
 dependencies = [
     { name = "jsonschema" },
@@ -24,17 +24,21 @@ langgraph = [
     { name = "langchain-anthropic" },
     { name = "langgraph" },
 ]
+live = [
+    { name = "httpx" },
+]
 
 [package.metadata]
 requires-dist = [
     { name = "build", marker = "extra == 'dev'", specifier = ">=1.2" },
+    { name = "httpx", marker = "extra == 'live'", specifier = ">=0.27,<1" },
     { name = "jsonschema", specifier = ">=4.23,<5" },
     { name = "langchain-anthropic", marker = "extra == 'langgraph'", specifier = ">=1,<2" },
     { name = "langgraph", marker = "extra == 'langgraph'", specifier = ">=1,<2" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.11" },
 ]
-provides-extras = ["dev", "langgraph"]
+provides-extras = ["dev", "langgraph", "live"]
 
 [[package]]
 name = "annotated-types"

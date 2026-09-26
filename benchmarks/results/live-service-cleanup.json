@@ -1,0 +1,30 @@
+{
+  "name": "aae-live-7e0fbae7bc",
+  "database_id": "6418e78d-1e44-46c3-afce-9ba42f45897c",
+  "deletion": {
+    "worker": {
+      "result": {
+        "id": "8c0b3e23eb444902a35e3bf9368be3fb"
+      },
+      "success": true,
+      "errors": [],
+      "messages": [],
+      "status": 200
+    },
+    "database": {
+      "result": null,
+      "errors": [],
+      "messages": [],
+      "success": true,
+      "status": 200
+    }
+  },
+  "verification": {
+    "worker": {
+      "error": "Error: Cloudflare API error: 10007: This Worker does not exist on your account."
+    },
+    "database": {
+      "error": "Error: Cloudflare API error: 7404: The database 6418e78d-1e44-46c3-afce-9ba42f45897c could not be found"
+    }
+  }
+}

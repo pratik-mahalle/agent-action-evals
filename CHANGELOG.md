@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.3.0a1 — 2026-09-26
+
+Test existing tools with boundary fault injection. See the
+[release notes](docs/releases/v0.3.0a1.md) for installation, validation, and limits.
+
+- Add `ToolBoundary` for existing synchronous/asynchronous Python callables and
+  `wrap_tool_node` for native LangGraph tools. Preserve normal inputs/results,
+  inject boundary faults, record concurrent calls and repeated inputs, and leave
+  retries to the caller. Payload capture is opt-in; both ambiguous timeout kinds
+  expose the same public exception. Add a SQLite write/response-loss example.
+- Add opt-in tool outcome verification with operation IDs, request fingerprints,
+  declared effect postconditions, and read-only status hooks.
+- Return structured confirmed, pending, partial, uncertain, and contract-violation
+  outcomes with evidence and bounded recovery decisions.
+- Gate write retries on an explicit service idempotency window; retain the exact
+  operation key/payload, check expired keys without resubmitting, and support resume.
+- Normalize the original LangGraph example's before-execution and after-commit
+  timeout errors to the same agent-visible observation.
+- Add twelve-case Python and real LangGraph examples and a reproducible scripted
+  comparison benchmark with false-success, duplicate-effect, completion, and latency metrics.
+- Test cancellation after commit, missing verification evidence, mismatched receipts,
+  expired operation keys, and independent evaluation of success claims.
+- Add a live Jev decision-agent benchmark against an authenticated Cloudflare D1
+  test service, with six fault cases, blinded model observations, persisted operation
+  IDs, independent state checks, and separate false/unverified success metrics.
+
 ## 0.2.0a1 — 2026-09-26
 
 First public alpha. See the [release notes](docs/releases/v0.2.0a1.md) for installation, assets, and known limitations.

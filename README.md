@@ -25,7 +25,7 @@ Run your agent against controlled business state, inject tool failures, and chec
 
 A refund tool can succeed even when its response times out. An agent may retry, issue a second refund, and still tell the customer everything went well. Agent Action Evals records the tool's effect and the response the agent received, then checks the state and action history against your assertions.
 
-**Status:** [v0.2.0a1 — first alpha](https://github.com/pratik-mahalle/agent-action-evals/releases/tag/v0.2.0a1). The local runner and offline examples work. Live model quality, external-team pilots, and broader production isolation validation remain open. See the [roadmap](ROADMAP.md).
+**Status:** [v0.3.0a1 — test existing tools](https://github.com/pratik-mahalle/agent-action-evals/releases/tag/v0.3.0a1). Wrap Python functions and LangGraph tools to inject failures and observe recovery. A live Jev/D1 integration check is recorded; existing-service adapters, external-team pilots, and broader production isolation validation remain open. See the [roadmap](ROADMAP.md).
 
 The current focus is reusable fixtures, controlled tool failures, and assertions against business state. In a [local comparison with Failproof's SDK](docs/FAILPROOF_COMPARISON.md), both approaches detected the same three seeded failures with zero false alarms. Our potential advantage is less simulation plumbing; a broader product advantage remains unproven.
 
@@ -47,7 +47,7 @@ Runs start from fresh SQLite state. Reports include JSON, JSONL checkpoints, and
 Requires **Python 3.11+**. Install from source:
 
 For the versioned wheel, source archive, and checksums, see the
-[release notes](docs/releases/v0.2.0a1.md).
+[release notes](docs/releases/v0.3.0a1.md).
 
 ```bash
 git clone https://github.com/pratik-mahalle/agent-action-evals.git
@@ -191,7 +191,58 @@ agent-action-evals examples/langgraph_refund.py --repeat 10 --timeout 120 \
   --json /tmp/langgraph-live.json --jsonl /tmp/langgraph-live.jsonl
 ```
 
-Live runs make billable provider calls. No live model score has been measured yet. The [LangGraph guide](docs/LANGGRAPH_EXAMPLE.md) covers provider settings, case definitions, and adapting your existing graph.
+Live runs make billable provider calls. This Anthropic/LangGraph entry point has not yet been measured with a live model. A separate live Jev decision-loop validation is recorded below. The [LangGraph guide](docs/LANGGRAPH_EXAMPLE.md) covers provider settings, case definitions, and adapting your existing graph.
+
+## Test existing tools
+
+Wrap an existing Python function to inject failures and observe the agent's
+recovery. Functions keep their inputs and normal outputs; sync and async calls
+remain supported. The wrapper performs no retries or deduplication.
+
+```python
+from agent_action_evals import Fault, ToolBoundary
+
+# create_issue is your existing tool function.
+boundary = ToolBoundary((Fault("create_issue", "response_lost_after_commit"),))
+tested_create_issue = boundary.wrap(create_issue)
+# Give tested_create_issue to the agent in place of create_issue.
+```
+
+For existing LangGraph tools, use
+`wrap_tool_node(existing_tools, boundary, **your_node_options)` from
+`agent_action_evals.adapters.langgraph`. It retains native tool schemas, runtime
+injection, artifacts, and error handling. Calls, repeated inputs, observations,
+and fault coverage are available through `boundary.report()`; payloads are omitted
+by default. [Usage and limits](docs/TOOL_BOUNDARY.md).
+
+Try `python examples/wrapped_sqlite_tool.py`: a real local database write succeeds,
+its response is hidden, and an independent query finds the committed row. A
+wrapper trace alone does not prove an external service committed an effect.
+
+## Experimental: verify tool outcomes during execution
+
+This alpha also includes an **experimental, opt-in verification layer**.
+Declare the expected business effect, supply an operation-status tool, and return
+structured evidence to the agent. Successful responses are verified; uncertain
+results remain `unknown`. Bounded retries require a declared service idempotency
+guarantee and reuse the same operation key and payload.
+
+```bash
+agent-action-evals examples/verified_refund.py --explain
+agent-action-evals examples/langgraph_verified_refund.py --repeat 3
+python benchmarks/verification.py --repeat 10
+```
+
+The examples cover twelve synthetic cases, including ambiguous timeouts, false
+success, stale status, partial effects, and mismatched receipts. They use scripted
+policies and simulated tools. See the [verification guide](docs/VERIFICATION.md)
+and [benchmark results](benchmarks/results/verification.md).
+
+The helper has also been [validated with live Jev decisions and a real Cloudflare
+D1 service](benchmarks/results/live-jev.md): **18/18 verified trials passed**,
+with zero false success claims. The direct policy made three false claims in
+18 trials. This used a temporary synthetic refund ledger; no payment provider
+was involved. See the [live setup guide](benchmarks/live_service/README.md) to reproduce it.
 
 ## Use it in CI
 
@@ -219,7 +270,8 @@ Exit codes: **0** for all passing, **1** for assertion failures, **2** for confi
 
 ## Benchmarks
 
-The recorded results measure the evaluator and the scripted integrations:
+The recorded results include evaluator checks, scripted integrations, and a
+separate live model/service validation:
 
 | Check | Recorded result | What was measured |
 | --- | --- | --- |
@@ -227,9 +279,11 @@ The recorded results measure the evaluator and the scripted integrations:
 | Failure attribution | 40/40 first wrong effects localized | The same synthetic corpus |
 | Offline LangGraph | 100/100 passing runs | Ten fixed-policy cases, repeated ten times |
 | Reusable refund pack | 56/56 passing runs | Fourteen cases, twice each with the scripted Python and LangGraph policies |
+| Outcome verification (experimental) | 120/120 passing runs per verified adapter; zero false success claims or duplicate effects | Twelve authored cases, ten repetitions each in Python and LangGraph; [scripted comparison](benchmarks/results/verification.md) |
+| Live Jev + D1 | 18/18 verified trials passed; 0 false success claims versus 3 in the direct policy | Six cases, three repetitions per policy; real model and durable cloud ledger; [results and limits](benchmarks/results/live-jev.md) |
 | Failproof SDK comparison | Both detected 3/3 unsafe runs and passed 9/9 safe controls | Same policies and matching tool observations; custom state telemetry supplied to Failproof |
 | Small-fixture runner overhead | p50 **2.205 ms**, p95 **4.124 ms** | 10,000 local runs; 1,159-byte fixture; no model calls |
-| Test suite | 74 local tests pass with comparison configured | Runner, adapters, packs, fault matrices, reports, and pinned SDK comparison; two Docker checks require a daemon |
+| Test suite | 130 local tests passed; 3 skipped | Includes real-callable boundary, verification, and live-harness checks; optional upstream comparison and two Docker checks skipped locally |
 
 Read the [synthetic methodology and full results](benchmarks/results/local.md) and [offline LangGraph results](benchmarks/results/langgraph-offline.md). The synthetic corpus has parameterized cases; its score does not establish reliability on unseen agents or live models. Timings are specific to the recorded machine and workload.
 

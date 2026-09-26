@@ -1,0 +1,4390 @@
+{
+  "kind": "live_jev_cloudflare_d1",
+  "created_at": "2026-09-26T12:21:48.790059+00:00",
+  "requested_model": "jev-latest",
+  "service": "temporary custom HTTP service backed by real Cloudflare D1",
+  "payment_provider": null,
+  "repeat": 3,
+  "cases": [
+    "normal",
+    "timeout_before",
+    "response_lost",
+    "stale_status_after_commit",
+    "false_success",
+    "verification_unavailable"
+  ],
+  "policies": [
+    "direct",
+    "verified"
+  ],
+  "decision_budget": 6,
+  "records": [
+    {
+      "case": "normal",
+      "policy": "direct",
+      "order_id": "order_7a735da93ff547f0b92972cdc904bec3",
+      "operation_id": "refund_086e8ce6d7dc4c9986594947030d205b",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.9685252910712734,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.73,
+            "probabilities": {
+              "escalate": 0.02,
+              "stop_failure": 0.0,
+              "get_refund_status": 0.19,
+              "issue_refund": 0.79,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 620,
+            "output_tokens": 64
+          },
+          "latency_ms": 389.38062509987503
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.9,
+            "probabilities": {
+              "finish_success": 0.93,
+              "get_refund_status": 0.07,
+              "issue_refund": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 734,
+            "output_tokens": 63
+          },
+          "latency_ms": 303.72608301695436
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_086e8ce6d7dc4c9986594947030d205b",
+            "order_id": "order_7a735da93ff547f0b92972cdc904bec3",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 195.58104092720896
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "normal",
+      "policy": "verified",
+      "order_id": "order_4b30bf47646c4197ae93ec1637eb3f2b",
+      "operation_id": "refund_d0a2afeb2c9b45fba28851f915437488",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_d0a2afeb2c9b45fba28851f915437488",
+        "transport": "returned",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 1,
+        "evidence": {
+          "operation_id": "refund_d0a2afeb2c9b45fba28851f915437488",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "2f6ad2059cdd1b3d3a1738dbc9538eb33688e73bba59fd2ca9840ae872338037",
+          "receipt_id": "refund_d0a2afeb2c9b45fba28851f915437488",
+          "effect": {
+            "order_id": "order_4b30bf47646c4197ae93ec1637eb3f2b",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.3610289169009775,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.74,
+            "probabilities": {
+              "escalate": 0.19,
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "refund_verified": 0.81
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 584,
+            "output_tokens": 52
+          },
+          "latency_ms": 314.27387497387826
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.99,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.0,
+              "finish_success": 1.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 904,
+            "output_tokens": 44
+          },
+          "latency_ms": 595.6721669062972
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_d0a2afeb2c9b45fba28851f915437488",
+            "transport": "returned",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 1,
+            "evidence": {
+              "operation_id": "refund_d0a2afeb2c9b45fba28851f915437488",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "2f6ad2059cdd1b3d3a1738dbc9538eb33688e73bba59fd2ca9840ae872338037",
+              "receipt_id": "refund_d0a2afeb2c9b45fba28851f915437488",
+              "effect": {
+                "order_id": "order_4b30bf47646c4197ae93ec1637eb3f2b",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 186.6756659001112
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 136.0383750870824
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "timeout_before",
+      "policy": "direct",
+      "order_id": "order_55232047a9504abbb6b6c90f7f49a14a",
+      "operation_id": "refund_dbee8a9675084253b2669f070f78f8c8",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "timeout_before"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.6032981669995934,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.78,
+            "probabilities": {
+              "get_refund_status": 0.16,
+              "issue_refund": 0.83,
+              "finish_success": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 623,
+            "output_tokens": 64
+          },
+          "latency_ms": 288.54908293578774
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.97,
+            "probabilities": {
+              "issue_refund": 0.02,
+              "get_refund_status": 0.98,
+              "stop_failure": 0.0,
+              "escalate": 0.0,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 657,
+            "output_tokens": 65
+          },
+          "latency_ms": 316.2726250011474
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.6,
+            "probabilities": {
+              "get_refund_status": 0.07,
+              "finish_success": 0.0,
+              "issue_refund": 0.68,
+              "escalate": 0.24,
+              "stop_failure": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 742,
+            "output_tokens": 64
+          },
+          "latency_ms": 327.1034170174971
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.49,
+            "probabilities": {
+              "get_refund_status": 0.34,
+              "stop_failure": 0.01,
+              "escalate": 0.04,
+              "finish_success": 0.61
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 824,
+            "output_tokens": 54
+          },
+          "latency_ms": 340.4021660098806
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_dbee8a9675084253b2669f070f78f8c8",
+            "tool": "issue_refund",
+            "authoritative": true,
+            "status": "not_found"
+          }
+        },
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_dbee8a9675084253b2669f070f78f8c8",
+            "order_id": "order_55232047a9504abbb6b6c90f7f49a14a",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 0.004624947905540466
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 76.18779200129211
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 180.0959169631824
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "timeout_before",
+      "policy": "verified",
+      "order_id": "order_ebb4e6311a7b40e7bebe8e4f9657d776",
+      "operation_id": "refund_650e6cff900844128f14c99f3e8b9929",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "timeout_before"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_650e6cff900844128f14c99f3e8b9929",
+        "transport": "returned",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 2,
+        "checks": 2,
+        "evidence": {
+          "operation_id": "refund_650e6cff900844128f14c99f3e8b9929",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "80fa3ca05175779bccdccb4fa7c73f319618658c15dd401af8b30d7f2bd83196",
+          "receipt_id": "refund_650e6cff900844128f14c99f3e8b9929",
+          "effect": {
+            "order_id": "order_ebb4e6311a7b40e7bebe8e4f9657d776",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.111021208926104,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.74,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.19,
+              "refund_verified": 0.81,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 586,
+            "output_tokens": 52
+          },
+          "latency_ms": 333.0094169359654
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.99,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.01,
+              "finish_success": 0.99
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 911,
+            "output_tokens": 44
+          },
+          "latency_ms": 326.84004202019423
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_650e6cff900844128f14c99f3e8b9929",
+            "transport": "returned",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 2,
+            "checks": 2,
+            "evidence": {
+              "operation_id": "refund_650e6cff900844128f14c99f3e8b9929",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "80fa3ca05175779bccdccb4fa7c73f319618658c15dd401af8b30d7f2bd83196",
+              "receipt_id": "refund_650e6cff900844128f14c99f3e8b9929",
+              "effect": {
+                "order_id": "order_ebb4e6311a7b40e7bebe8e4f9657d776",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 0.0021669548004865646
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 72.68758304417133
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 182.77299997862428
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 124.11516695283353
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "response_lost",
+      "policy": "direct",
+      "order_id": "order_15c64d59b90a40399f4f5c69eb9ed584",
+      "operation_id": "refund_f601948edc3c4398bfe9486ff25face8",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.5107144169742242,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.7,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "get_refund_status": 0.22,
+              "issue_refund": 0.76,
+              "escalate": 0.02,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 619,
+            "output_tokens": 64
+          },
+          "latency_ms": 284.48183299042284
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.97,
+            "probabilities": {
+              "issue_refund": 0.02,
+              "escalate": 0.0,
+              "get_refund_status": 0.98,
+              "stop_failure": 0.0,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 653,
+            "output_tokens": 65
+          },
+          "latency_ms": 396.5330000501126
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.97,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.01,
+              "finish_success": 0.97,
+              "get_refund_status": 0.02,
+              "issue_refund": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 903,
+            "output_tokens": 63
+          },
+          "latency_ms": 286.92087496165186
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_f601948edc3c4398bfe9486ff25face8",
+            "tool": "issue_refund",
+            "authoritative": true,
+            "status": "succeeded",
+            "request_sha256": "c7e321105fb4782d59f876cfb78f9328880c8aa535b93579eb0c55d823de17cc",
+            "receipt_id": "refund_f601948edc3c4398bfe9486ff25face8",
+            "effect": {
+              "order_id": "order_15c64d59b90a40399f4f5c69eb9ed584",
+              "amount_cents": 500,
+              "refund_count": 1
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 345.206290949136
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 123.90116695314646
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "response_lost",
+      "policy": "verified",
+      "order_id": "order_a6dd4eeafca8462ba3ee0e50913ffcc8",
+      "operation_id": "refund_c40004fb5d0a4204be311e4d376fa282",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_c40004fb5d0a4204be311e4d376fa282",
+        "transport": "timeout",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 1,
+        "evidence": {
+          "operation_id": "refund_c40004fb5d0a4204be311e4d376fa282",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "e07488850c535acdc335b9065c11ef04cbe35ab15f397a4f5d107bb12344fc00",
+          "receipt_id": "refund_c40004fb5d0a4204be311e4d376fa282",
+          "effect": {
+            "order_id": "order_a6dd4eeafca8462ba3ee0e50913ffcc8",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 0.9918473749421537,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.77,
+            "probabilities": {
+              "escalate": 0.17,
+              "finish_success": 0.0,
+              "refund_verified": 0.83,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 579,
+            "output_tokens": 52
+          },
+          "latency_ms": 285.57066596113145
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.51,
+            "probabilities": {
+              "stop_failure": 0.01,
+              "escalate": 0.32,
+              "finish_success": 0.67
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 896,
+            "output_tokens": 44
+          },
+          "latency_ms": 331.48670801892877
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_c40004fb5d0a4204be311e4d376fa282",
+            "transport": "timeout",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 1,
+            "evidence": {
+              "operation_id": "refund_c40004fb5d0a4204be311e4d376fa282",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "e07488850c535acdc335b9065c11ef04cbe35ab15f397a4f5d107bb12344fc00",
+              "receipt_id": "refund_c40004fb5d0a4204be311e4d376fa282",
+              "effect": {
+                "order_id": "order_a6dd4eeafca8462ba3ee0e50913ffcc8",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 176.93358403630555
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 125.31145801767707
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "stale_status_after_commit",
+      "policy": "direct",
+      "order_id": "order_5095244a127840ea82e08a025b6683d6",
+      "operation_id": "refund_7d139eee58de486f88dbd3b2734f2af1",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit",
+        "stale_status"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.814574916032143,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.76,
+            "probabilities": {
+              "get_refund_status": 0.18,
+              "issue_refund": 0.8,
+              "stop_failure": 0.0,
+              "escalate": 0.02,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 622,
+            "output_tokens": 64
+          },
+          "latency_ms": 313.91958298627287
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.96,
+            "probabilities": {
+              "get_refund_status": 0.97,
+              "issue_refund": 0.03,
+              "escalate": 0.0,
+              "finish_success": 0.0,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 656,
+            "output_tokens": 65
+          },
+          "latency_ms": 346.34333301801234
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.52,
+            "probabilities": {
+              "issue_refund": 0.62,
+              "stop_failure": 0.0,
+              "escalate": 0.22,
+              "get_refund_status": 0.16,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 739,
+            "output_tokens": 64
+          },
+          "latency_ms": 387.25525001063943
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.54,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.04,
+              "get_refund_status": 0.3,
+              "finish_success": 0.66
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 820,
+            "output_tokens": 54
+          },
+          "latency_ms": 322.36279093194753
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_7d139eee58de486f88dbd3b2734f2af1",
+            "tool": "issue_refund",
+            "status": "not_found",
+            "authoritative": false
+          }
+        },
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_7d139eee58de486f88dbd3b2734f2af1",
+            "order_id": "order_5095244a127840ea82e08a025b6683d6",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 180.47995900269598
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 0.0022919848561286926
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 189.4873749697581
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "stale_status_after_commit",
+      "policy": "verified",
+      "order_id": "order_fc88f33e08a143d086409c0c7f2cb853",
+      "operation_id": "refund_4dcebb87b3fa49329137eb5b50e0d5a3",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit",
+        "stale_status"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_4dcebb87b3fa49329137eb5b50e0d5a3",
+        "transport": "timeout",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 2,
+        "evidence": {
+          "operation_id": "refund_4dcebb87b3fa49329137eb5b50e0d5a3",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "448783547cb9fd7d9ae63a843a2b844cdb7950094541c5f00c1e12b1393dab09",
+          "receipt_id": "refund_4dcebb87b3fa49329137eb5b50e0d5a3",
+          "effect": {
+            "order_id": "order_fc88f33e08a143d086409c0c7f2cb853",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.4181211250834167,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.74,
+            "probabilities": {
+              "refund_verified": 0.81,
+              "stop_failure": 0.0,
+              "escalate": 0.19,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 585,
+            "output_tokens": 52
+          },
+          "latency_ms": 372.6630419259891
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.45,
+            "probabilities": {
+              "escalate": 0.36,
+              "finish_success": 0.63,
+              "stop_failure": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 909,
+            "output_tokens": 44
+          },
+          "latency_ms": 340.5499589862302
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_4dcebb87b3fa49329137eb5b50e0d5a3",
+            "transport": "timeout",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 2,
+            "evidence": {
+              "operation_id": "refund_4dcebb87b3fa49329137eb5b50e0d5a3",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "448783547cb9fd7d9ae63a843a2b844cdb7950094541c5f00c1e12b1393dab09",
+              "receipt_id": "refund_4dcebb87b3fa49329137eb5b50e0d5a3",
+              "effect": {
+                "order_id": "order_fc88f33e08a143d086409c0c7f2cb853",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 183.1720839254558
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 0.0014170072972774506
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 195.9474169416353
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "false_success",
+      "policy": "direct",
+      "order_id": "order_fdb5fd85eed6452cbda92581611f1050",
+      "operation_id": "refund_652b4a95b18b48938b4bfcbb1f193f3f",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "escalate",
+      "false_success": true,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 0,
+        "refunded_cents": 0
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.0846770000644028,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.72,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "get_refund_status": 0.21,
+              "escalate": 0.02,
+              "issue_refund": 0.77,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 619,
+            "output_tokens": 64
+          },
+          "latency_ms": 281.60495893098414
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.93,
+            "probabilities": {
+              "escalate": 0.0,
+              "stop_failure": 0.0,
+              "issue_refund": 0.0,
+              "get_refund_status": 0.05,
+              "finish_success": 0.95
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 692,
+            "output_tokens": 63
+          },
+          "latency_ms": 567.4459579167888
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "order_id": "order_fdb5fd85eed6452cbda92581611f1050",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 161.3453330937773
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "false_success",
+      "policy": "verified",
+      "order_id": "order_8dfe54f9c0ac4d9ab24430e232b14cec",
+      "operation_id": "refund_03cd77e817d7413fb052363a414624fa",
+      "passed": true,
+      "final_action": "escalate",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 0,
+        "refunded_cents": 0
+      },
+      "verified_outcome": {
+        "operation_id": "refund_03cd77e817d7413fb052363a414624fa",
+        "transport": "returned",
+        "status": "unknown",
+        "next_action": "escalate",
+        "reason": "not_found",
+        "attempts": 2,
+        "checks": 4,
+        "evidence": {
+          "operation_id": "refund_03cd77e817d7413fb052363a414624fa",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "not_found"
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.553973083035089,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.67,
+            "probabilities": {
+              "escalate": 0.24,
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "refund_verified": 0.76
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 584,
+            "output_tokens": 52
+          },
+          "latency_ms": 323.6114999745041
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "escalate",
+            "confidence": 0.9,
+            "probabilities": {
+              "escalate": 0.93,
+              "stop_failure": 0.07,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 737,
+            "output_tokens": 45
+          },
+          "latency_ms": 296.9769580522552
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_03cd77e817d7413fb052363a414624fa",
+            "transport": "returned",
+            "status": "unknown",
+            "next_action": "escalate",
+            "reason": "not_found",
+            "attempts": 2,
+            "checks": 4,
+            "evidence": {
+              "operation_id": "refund_03cd77e817d7413fb052363a414624fa",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "not_found"
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 82.0503329159692
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 75.55508299265057
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 77.16500002425164
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 73.01166700199246
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 79.53145809005946
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 72.36283295787871
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "verification_unavailable",
+      "policy": "direct",
+      "order_id": "order_c02dec9c93a84d96a1c0a514c1aae127",
+      "operation_id": "refund_3919df51da6c41f8a4512ab4019ffdd5",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": false,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.8586516659706831,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.77,
+            "probabilities": {
+              "finish_success": 0.0,
+              "get_refund_status": 0.17,
+              "issue_refund": 0.82,
+              "stop_failure": 0.0,
+              "escalate": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 618,
+            "output_tokens": 64
+          },
+          "latency_ms": 305.2313750376925
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.92,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "get_refund_status": 0.06,
+              "issue_refund": 0.0,
+              "escalate": 0.0,
+              "finish_success": 0.9400000000000001
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 730,
+            "output_tokens": 63
+          },
+          "latency_ms": 296.3829590007663
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_3919df51da6c41f8a4512ab4019ffdd5",
+            "order_id": "order_c02dec9c93a84d96a1c0a514c1aae127",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 180.16908399295062
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "verification_unavailable",
+      "policy": "verified",
+      "order_id": "order_0df971c779384bf482f290aa2644e0a1",
+      "operation_id": "refund_aa69b6b8af7c4d1b8bcb09a0b8d88994",
+      "passed": true,
+      "final_action": "escalate",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "verification_unavailable",
+        "verification_unavailable",
+        "verification_unavailable",
+        "verification_unavailable"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_aa69b6b8af7c4d1b8bcb09a0b8d88994",
+        "transport": "returned",
+        "status": "unknown",
+        "next_action": "escalate",
+        "reason": "verification_unavailable",
+        "attempts": 1,
+        "checks": 4,
+        "evidence": {}
+      },
+      "error": null,
+      "duration_seconds": 2.0126012089895085,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.74,
+            "probabilities": {
+              "finish_success": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.19,
+              "refund_verified": 0.81
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 586,
+            "output_tokens": 52
+          },
+          "latency_ms": 362.1960000600666
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "escalate",
+            "confidence": 1.0,
+            "probabilities": {
+              "escalate": 1.0,
+              "finish_success": 0.0,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 677,
+            "output_tokens": 45
+          },
+          "latency_ms": 386.6792500484735
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_aa69b6b8af7c4d1b8bcb09a0b8d88994",
+            "transport": "returned",
+            "status": "unknown",
+            "next_action": "escalate",
+            "reason": "verification_unavailable",
+            "attempts": 1,
+            "checks": 4,
+            "evidence": {}
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 584.2615839792415
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.0032909447327256203
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.01837499439716339
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.004749977961182594
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.004500034265220165
+        }
+      ],
+      "repetition": 0
+    },
+    {
+      "case": "normal",
+      "policy": "verified",
+      "order_id": "order_42b52e3c7c164206bf951c5306f5bf23",
+      "operation_id": "refund_045e022cfff3459a979a58d62d730615",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_045e022cfff3459a979a58d62d730615",
+        "transport": "returned",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 1,
+        "evidence": {
+          "operation_id": "refund_045e022cfff3459a979a58d62d730615",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "0c9d00290b34abc89e2d2bcf76501fd672012488ae026be346e824ff2c26cfa5",
+          "receipt_id": "refund_045e022cfff3459a979a58d62d730615",
+          "effect": {
+            "order_id": "order_42b52e3c7c164206bf951c5306f5bf23",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.0824179999763146,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.68,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.24,
+              "refund_verified": 0.76,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 588,
+            "output_tokens": 52
+          },
+          "latency_ms": 390.60820802114904
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.99,
+            "probabilities": {
+              "finish_success": 1.0,
+              "escalate": 0.0,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 917,
+            "output_tokens": 44
+          },
+          "latency_ms": 309.31525002233684
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_045e022cfff3459a979a58d62d730615",
+            "transport": "returned",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 1,
+            "evidence": {
+              "operation_id": "refund_045e022cfff3459a979a58d62d730615",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "0c9d00290b34abc89e2d2bcf76501fd672012488ae026be346e824ff2c26cfa5",
+              "receipt_id": "refund_045e022cfff3459a979a58d62d730615",
+              "effect": {
+                "order_id": "order_42b52e3c7c164206bf951c5306f5bf23",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 177.58529202546924
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 131.0164580354467
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "normal",
+      "policy": "direct",
+      "order_id": "order_57014228a94341ae8b45d6304ba650e2",
+      "operation_id": "refund_8e950bcd58b945db83551a3ea6eb1da7",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.8689131248975173,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.76,
+            "probabilities": {
+              "escalate": 0.02,
+              "finish_success": 0.0,
+              "get_refund_status": 0.17,
+              "stop_failure": 0.0,
+              "issue_refund": 0.81
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 621,
+            "output_tokens": 64
+          },
+          "latency_ms": 304.0110409492627
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.91,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.0,
+              "finish_success": 0.9400000000000001,
+              "get_refund_status": 0.06,
+              "issue_refund": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 736,
+            "output_tokens": 63
+          },
+          "latency_ms": 309.2881250195205
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_8e950bcd58b945db83551a3ea6eb1da7",
+            "order_id": "order_57014228a94341ae8b45d6304ba650e2",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 179.92866598069668
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "timeout_before",
+      "policy": "verified",
+      "order_id": "order_23fb85256a7948cfa4b8a08b682ce9b7",
+      "operation_id": "refund_271e5e20235842a48a809be141de1cba",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "timeout_before"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_271e5e20235842a48a809be141de1cba",
+        "transport": "returned",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 2,
+        "checks": 2,
+        "evidence": {
+          "operation_id": "refund_271e5e20235842a48a809be141de1cba",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "38da12255efae214438dfa8e33ef0c6afbad4cf6488c52183ebf70522300ef76",
+          "receipt_id": "refund_271e5e20235842a48a809be141de1cba",
+          "effect": {
+            "order_id": "order_23fb85256a7948cfa4b8a08b682ce9b7",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.128448290983215,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.76,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.18,
+              "refund_verified": 0.82,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 586,
+            "output_tokens": 52
+          },
+          "latency_ms": 337.45279104914516
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.99,
+            "probabilities": {
+              "escalate": 0.01,
+              "stop_failure": 0.0,
+              "finish_success": 0.99
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 907,
+            "output_tokens": 44
+          },
+          "latency_ms": 310.57458301074803
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_271e5e20235842a48a809be141de1cba",
+            "transport": "returned",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 2,
+            "checks": 2,
+            "evidence": {
+              "operation_id": "refund_271e5e20235842a48a809be141de1cba",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "38da12255efae214438dfa8e33ef0c6afbad4cf6488c52183ebf70522300ef76",
+              "receipt_id": "refund_271e5e20235842a48a809be141de1cba",
+              "effect": {
+                "order_id": "order_23fb85256a7948cfa4b8a08b682ce9b7",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 0.0024170149117708206
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 77.64966611284763
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 194.1775829764083
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 132.63270794413984
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "timeout_before",
+      "policy": "direct",
+      "order_id": "order_c281c68c7c42462fb05c34d3a4143985",
+      "operation_id": "refund_a807814c18bf4458841c40ce5ab4e87f",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "timeout_before"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.5638840419705957,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.72,
+            "probabilities": {
+              "get_refund_status": 0.21,
+              "stop_failure": 0.0,
+              "escalate": 0.02,
+              "issue_refund": 0.77,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 622,
+            "output_tokens": 64
+          },
+          "latency_ms": 335.62366699334234
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.96,
+            "probabilities": {
+              "finish_success": 0.0,
+              "escalate": 0.0,
+              "stop_failure": 0.0,
+              "get_refund_status": 0.97,
+              "issue_refund": 0.03
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 656,
+            "output_tokens": 65
+          },
+          "latency_ms": 282.5982919894159
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.58,
+            "probabilities": {
+              "escalate": 0.25,
+              "get_refund_status": 0.07,
+              "issue_refund": 0.67,
+              "finish_success": 0.0,
+              "stop_failure": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 740,
+            "output_tokens": 64
+          },
+          "latency_ms": 280.3067499771714
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.56,
+            "probabilities": {
+              "stop_failure": 0.01,
+              "get_refund_status": 0.28,
+              "escalate": 0.04,
+              "finish_success": 0.67
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 821,
+            "output_tokens": 54
+          },
+          "latency_ms": 339.37579207122326
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_a807814c18bf4458841c40ce5ab4e87f",
+            "tool": "issue_refund",
+            "authoritative": true,
+            "status": "not_found"
+          }
+        },
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_a807814c18bf4458841c40ce5ab4e87f",
+            "order_id": "order_c281c68c7c42462fb05c34d3a4143985",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 0.0024170149117708206
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 72.33899994753301
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 181.033166940324
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "response_lost",
+      "policy": "verified",
+      "order_id": "order_59f82359a86d48ed95de71ccad22eddd",
+      "operation_id": "refund_02f5403e446a4e5e93567d68b2353543",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_02f5403e446a4e5e93567d68b2353543",
+        "transport": "timeout",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 1,
+        "evidence": {
+          "operation_id": "refund_02f5403e446a4e5e93567d68b2353543",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "1fcff0f8816e6b7cb433362da81fbe36ef59cad86a28c79ae209c589fc73beec",
+          "receipt_id": "refund_02f5403e446a4e5e93567d68b2353543",
+          "effect": {
+            "order_id": "order_59f82359a86d48ed95de71ccad22eddd",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.0546932079596445,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.75,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "escalate": 0.19,
+              "refund_verified": 0.81
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 586,
+            "output_tokens": 52
+          },
+          "latency_ms": 366.1325420252979
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.46,
+            "probabilities": {
+              "escalate": 0.35,
+              "stop_failure": 0.01,
+              "finish_success": 0.64
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 913,
+            "output_tokens": 44
+          },
+          "latency_ms": 294.7494169929996
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_02f5403e446a4e5e93567d68b2353543",
+            "transport": "timeout",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 1,
+            "evidence": {
+              "operation_id": "refund_02f5403e446a4e5e93567d68b2353543",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "1fcff0f8816e6b7cb433362da81fbe36ef59cad86a28c79ae209c589fc73beec",
+              "receipt_id": "refund_02f5403e446a4e5e93567d68b2353543",
+              "effect": {
+                "order_id": "order_59f82359a86d48ed95de71ccad22eddd",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 194.39145911019295
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 125.09325006976724
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "response_lost",
+      "policy": "direct",
+      "order_id": "order_f5916295327e4ebf8a56c40024532a85",
+      "operation_id": "refund_13df02bfae9e4c4d88a6cc4ff3fd5ae7",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.4004296669736505,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.69,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.02,
+              "issue_refund": 0.75,
+              "get_refund_status": 0.23,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 620,
+            "output_tokens": 64
+          },
+          "latency_ms": 304.55374997109175
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.96,
+            "probabilities": {
+              "issue_refund": 0.03,
+              "escalate": 0.0,
+              "get_refund_status": 0.97,
+              "stop_failure": 0.0,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 654,
+            "output_tokens": 65
+          },
+          "latency_ms": 324.1722909733653
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.97,
+            "probabilities": {
+              "issue_refund": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.01,
+              "finish_success": 0.98,
+              "get_refund_status": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 905,
+            "output_tokens": 63
+          },
+          "latency_ms": 298.39045798871666
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_13df02bfae9e4c4d88a6cc4ff3fd5ae7",
+            "tool": "issue_refund",
+            "authoritative": true,
+            "status": "succeeded",
+            "request_sha256": "982bcb3922343ab3b8faccf0e6385575df959b8e709461b746e2c39ab3d8be01",
+            "receipt_id": "refund_13df02bfae9e4c4d88a6cc4ff3fd5ae7",
+            "effect": {
+              "order_id": "order_f5916295327e4ebf8a56c40024532a85",
+              "amount_cents": 500,
+              "refund_count": 1
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 180.15683302655816
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 130.3253750083968
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "stale_status_after_commit",
+      "policy": "verified",
+      "order_id": "order_eaaeeabae18c4d40a5f68563ba97d5c5",
+      "operation_id": "refund_fed5ae2738d548dc9296378bd181a031",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit",
+        "stale_status"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_fed5ae2738d548dc9296378bd181a031",
+        "transport": "timeout",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 2,
+        "evidence": {
+          "operation_id": "refund_fed5ae2738d548dc9296378bd181a031",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "081f22dbdfb21521b75e1bcf32fe11197b9a3d89515511539d3d06750b64bb5a",
+          "receipt_id": "refund_fed5ae2738d548dc9296378bd181a031",
+          "effect": {
+            "order_id": "order_eaaeeabae18c4d40a5f68563ba97d5c5",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.6183364170137793,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.7,
+            "probabilities": {
+              "escalate": 0.22,
+              "refund_verified": 0.78,
+              "stop_failure": 0.0,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 581,
+            "output_tokens": 52
+          },
+          "latency_ms": 372.77775001712143
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.51,
+            "probabilities": {
+              "finish_success": 0.67,
+              "escalate": 0.32,
+              "stop_failure": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 900,
+            "output_tokens": 44
+          },
+          "latency_ms": 297.8593339212239
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_fed5ae2738d548dc9296378bd181a031",
+            "transport": "timeout",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 2,
+            "evidence": {
+              "operation_id": "refund_fed5ae2738d548dc9296378bd181a031",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "081f22dbdfb21521b75e1bcf32fe11197b9a3d89515511539d3d06750b64bb5a",
+              "receipt_id": "refund_fed5ae2738d548dc9296378bd181a031",
+              "effect": {
+                "order_id": "order_eaaeeabae18c4d40a5f68563ba97d5c5",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 538.4978750953451
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 0.001625041477382183
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 129.68329095747322
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "stale_status_after_commit",
+      "policy": "direct",
+      "order_id": "order_f72be2e3ca2f477cb02b216e187626f8",
+      "operation_id": "refund_9a945e0865e24388bf67e82a6b37cd6e",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit",
+        "stale_status"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.7188276660162956,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.73,
+            "probabilities": {
+              "issue_refund": 0.78,
+              "stop_failure": 0.0,
+              "escalate": 0.02,
+              "finish_success": 0.0,
+              "get_refund_status": 0.2
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 622,
+            "output_tokens": 64
+          },
+          "latency_ms": 299.22054207418114
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.96,
+            "probabilities": {
+              "get_refund_status": 0.97,
+              "issue_refund": 0.03,
+              "stop_failure": 0.0,
+              "escalate": 0.0,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 656,
+            "output_tokens": 65
+          },
+          "latency_ms": 325.1484159845859
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.6,
+            "probabilities": {
+              "escalate": 0.17,
+              "get_refund_status": 0.15,
+              "stop_failure": 0.0,
+              "issue_refund": 0.68,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 742,
+            "output_tokens": 64
+          },
+          "latency_ms": 353.3481250051409
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.62,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "finish_success": 0.72,
+              "get_refund_status": 0.24,
+              "escalate": 0.04
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 823,
+            "output_tokens": 54
+          },
+          "latency_ms": 288.86400000192225
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_9a945e0865e24388bf67e82a6b37cd6e",
+            "tool": "issue_refund",
+            "status": "not_found",
+            "authoritative": false
+          }
+        },
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_9a945e0865e24388bf67e82a6b37cd6e",
+            "order_id": "order_f72be2e3ca2f477cb02b216e187626f8",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 197.89120799396187
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 0.001250067725777626
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 179.48483303189278
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "false_success",
+      "policy": "verified",
+      "order_id": "order_fab61bdb0bf34e77b9326dffddd06d47",
+      "operation_id": "refund_7f97592995454941906082904786b725",
+      "passed": true,
+      "final_action": "escalate",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 0,
+        "refunded_cents": 0
+      },
+      "verified_outcome": {
+        "operation_id": "refund_7f97592995454941906082904786b725",
+        "transport": "returned",
+        "status": "unknown",
+        "next_action": "escalate",
+        "reason": "not_found",
+        "attempts": 2,
+        "checks": 4,
+        "evidence": {
+          "operation_id": "refund_7f97592995454941906082904786b725",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "not_found"
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.6817219590302557,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.69,
+            "probabilities": {
+              "finish_success": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.23,
+              "refund_verified": 0.77
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 585,
+            "output_tokens": 52
+          },
+          "latency_ms": 375.14949997421354
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "escalate",
+            "confidence": 0.91,
+            "probabilities": {
+              "stop_failure": 0.06,
+              "escalate": 0.94,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 744,
+            "output_tokens": 45
+          },
+          "latency_ms": 284.7870420664549
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_7f97592995454941906082904786b725",
+            "transport": "returned",
+            "status": "unknown",
+            "next_action": "escalate",
+            "reason": "not_found",
+            "attempts": 2,
+            "checks": 4,
+            "evidence": {
+              "operation_id": "refund_7f97592995454941906082904786b725",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "not_found"
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 147.40537491161376
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 75.89720806572586
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 73.48966703284532
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 70.59533393476158
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 103.21933310478926
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 72.56683299783617
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "false_success",
+      "policy": "direct",
+      "order_id": "order_fb700101b554474c8519d4ebeb9c4cea",
+      "operation_id": "refund_61492ab65bb34441995a87f4751b0a05",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "escalate",
+      "false_success": true,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 0,
+        "refunded_cents": 0
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.7677336669294164,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.76,
+            "probabilities": {
+              "issue_refund": 0.81,
+              "escalate": 0.01,
+              "get_refund_status": 0.17,
+              "stop_failure": 0.0,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 620,
+            "output_tokens": 64
+          },
+          "latency_ms": 334.53362504951656
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.91,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.0,
+              "finish_success": 0.9400000000000001,
+              "get_refund_status": 0.06,
+              "issue_refund": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 694,
+            "output_tokens": 63
+          },
+          "latency_ms": 287.4620839720592
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "order_id": "order_fb700101b554474c8519d4ebeb9c4cea",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 72.82062503509223
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "verification_unavailable",
+      "policy": "verified",
+      "order_id": "order_671946fb9ea3410987c8c88f46b65103",
+      "operation_id": "refund_a42effc876a44cb79a3f1b06dcca654b",
+      "passed": true,
+      "final_action": "escalate",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "verification_unavailable",
+        "verification_unavailable",
+        "verification_unavailable",
+        "verification_unavailable"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_a42effc876a44cb79a3f1b06dcca654b",
+        "transport": "returned",
+        "status": "unknown",
+        "next_action": "escalate",
+        "reason": "verification_unavailable",
+        "attempts": 1,
+        "checks": 4,
+        "evidence": {}
+      },
+      "error": null,
+      "duration_seconds": 1.5691660000011325,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.72,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "refund_verified": 0.79,
+              "escalate": 0.21,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 584,
+            "output_tokens": 52
+          },
+          "latency_ms": 343.8782920129597
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "escalate",
+            "confidence": 1.0,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "escalate": 1.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 672,
+            "output_tokens": 45
+          },
+          "latency_ms": 370.51770801190287
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_a42effc876a44cb79a3f1b06dcca654b",
+            "transport": "returned",
+            "status": "unknown",
+            "next_action": "escalate",
+            "reason": "verification_unavailable",
+            "attempts": 1,
+            "checks": 4,
+            "evidence": {}
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 179.23233401961625
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.002125045284628868
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.00458303838968277
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.004459056071937084
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.004665926098823547
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "verification_unavailable",
+      "policy": "direct",
+      "order_id": "order_33a698b20edd4931b7eb0b113dd10065",
+      "operation_id": "refund_2ee69008b73648f0918999ee3b86662f",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": false,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.9773927499772981,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.73,
+            "probabilities": {
+              "issue_refund": 0.78,
+              "finish_success": 0.0,
+              "escalate": 0.02,
+              "stop_failure": 0.0,
+              "get_refund_status": 0.2
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 622,
+            "output_tokens": 64
+          },
+          "latency_ms": 373.35362506564707
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.91,
+            "probabilities": {
+              "finish_success": 0.93,
+              "get_refund_status": 0.07,
+              "issue_refund": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 738,
+            "output_tokens": 63
+          },
+          "latency_ms": 341.73858305439353
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_2ee69008b73648f0918999ee3b86662f",
+            "order_id": "order_33a698b20edd4931b7eb0b113dd10065",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 183.11345798429102
+        }
+      ],
+      "repetition": 1
+    },
+    {
+      "case": "normal",
+      "policy": "direct",
+      "order_id": "order_e5f858d96ce843a0a08b4063fbdfd00f",
+      "operation_id": "refund_0df174f9f84646a48f6a3d97c325ae33",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.9726250839885324,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.77,
+            "probabilities": {
+              "get_refund_status": 0.16,
+              "finish_success": 0.0,
+              "issue_refund": 0.82,
+              "escalate": 0.02,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 622,
+            "output_tokens": 64
+          },
+          "latency_ms": 366.3466249126941
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.91,
+            "probabilities": {
+              "escalate": 0.0,
+              "get_refund_status": 0.07,
+              "stop_failure": 0.0,
+              "issue_refund": 0.0,
+              "finish_success": 0.93
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 738,
+            "output_tokens": 63
+          },
+          "latency_ms": 344.3713749293238
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_0df174f9f84646a48f6a3d97c325ae33",
+            "order_id": "order_e5f858d96ce843a0a08b4063fbdfd00f",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 179.5629169791937
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "normal",
+      "policy": "verified",
+      "order_id": "order_58b0f99393844942b079a9dc24ee62e4",
+      "operation_id": "refund_9dfc1cd807014bd7a340af56e0961353",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_9dfc1cd807014bd7a340af56e0961353",
+        "transport": "returned",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 1,
+        "evidence": {
+          "operation_id": "refund_9dfc1cd807014bd7a340af56e0961353",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "d0c4b37abefdf75b3870625d81aaefd06a7c7b2bd6b3558b40882ea087c52da0",
+          "receipt_id": "refund_9dfc1cd807014bd7a340af56e0961353",
+          "effect": {
+            "order_id": "order_58b0f99393844942b079a9dc24ee62e4",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.3045494169928133,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.69,
+            "probabilities": {
+              "finish_success": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.23,
+              "refund_verified": 0.77
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 586,
+            "output_tokens": 52
+          },
+          "latency_ms": 355.9818749781698
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.99,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.0,
+              "finish_success": 1.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 908,
+            "output_tokens": 44
+          },
+          "latency_ms": 314.56254189834
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_9dfc1cd807014bd7a340af56e0961353",
+            "transport": "returned",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 1,
+            "evidence": {
+              "operation_id": "refund_9dfc1cd807014bd7a340af56e0961353",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "d0c4b37abefdf75b3870625d81aaefd06a7c7b2bd6b3558b40882ea087c52da0",
+              "receipt_id": "refund_9dfc1cd807014bd7a340af56e0961353",
+              "effect": {
+                "order_id": "order_58b0f99393844942b079a9dc24ee62e4",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 429.50999992899597
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 128.28500010073185
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "timeout_before",
+      "policy": "direct",
+      "order_id": "order_cc5a19165a154c248528c3888f781c06",
+      "operation_id": "refund_a2a5e940baf84b599bd557e2f1868ece",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "timeout_before"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.6439875001087785,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.8,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.02,
+              "finish_success": 0.0,
+              "get_refund_status": 0.15,
+              "issue_refund": 0.83
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 621,
+            "output_tokens": 64
+          },
+          "latency_ms": 309.3332080170512
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.96,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "issue_refund": 0.03,
+              "escalate": 0.0,
+              "get_refund_status": 0.97,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 655,
+            "output_tokens": 65
+          },
+          "latency_ms": 310.785457957536
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.61,
+            "probabilities": {
+              "escalate": 0.25,
+              "finish_success": 0.0,
+              "issue_refund": 0.68,
+              "stop_failure": 0.01,
+              "get_refund_status": 0.06
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 738,
+            "output_tokens": 64
+          },
+          "latency_ms": 355.65408307593316
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.54,
+            "probabilities": {
+              "get_refund_status": 0.29,
+              "escalate": 0.05,
+              "finish_success": 0.65,
+              "stop_failure": 0.01
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 818,
+            "output_tokens": 54
+          },
+          "latency_ms": 339.2772499937564
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_a2a5e940baf84b599bd557e2f1868ece",
+            "tool": "issue_refund",
+            "authoritative": true,
+            "status": "not_found"
+          }
+        },
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_a2a5e940baf84b599bd557e2f1868ece",
+            "order_id": "order_cc5a19165a154c248528c3888f781c06",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 0.002749962732195854
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 72.95199995860457
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 185.0730829173699
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "timeout_before",
+      "policy": "verified",
+      "order_id": "order_1c3bd2f10c9247ba842808e06f032f07",
+      "operation_id": "refund_6cd7e9526e6c43eab89b946da7556cdf",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "timeout_before"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_6cd7e9526e6c43eab89b946da7556cdf",
+        "transport": "returned",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 2,
+        "checks": 2,
+        "evidence": {
+          "operation_id": "refund_6cd7e9526e6c43eab89b946da7556cdf",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "f1d7868608f720c6ab511438abd309e26e1c74dfc754b3da3ae94ee9abcd47f4",
+          "receipt_id": "refund_6cd7e9526e6c43eab89b946da7556cdf",
+          "effect": {
+            "order_id": "order_1c3bd2f10c9247ba842808e06f032f07",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.120862334035337,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.77,
+            "probabilities": {
+              "escalate": 0.17,
+              "stop_failure": 0.0,
+              "refund_verified": 0.83,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 585,
+            "output_tokens": 52
+          },
+          "latency_ms": 368.80633409600705
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.99,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "finish_success": 1.0,
+              "escalate": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 903,
+            "output_tokens": 44
+          },
+          "latency_ms": 288.00666704773903
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_6cd7e9526e6c43eab89b946da7556cdf",
+            "transport": "returned",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 2,
+            "checks": 2,
+            "evidence": {
+              "operation_id": "refund_6cd7e9526e6c43eab89b946da7556cdf",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "f1d7868608f720c6ab511438abd309e26e1c74dfc754b3da3ae94ee9abcd47f4",
+              "receipt_id": "refund_6cd7e9526e6c43eab89b946da7556cdf",
+              "effect": {
+                "order_id": "order_1c3bd2f10c9247ba842808e06f032f07",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 0.0025420449674129486
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 74.62199998553842
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 186.46541703492403
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 130.81791694276035
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "response_lost",
+      "policy": "direct",
+      "order_id": "order_918914322e9a4587a890027497300342",
+      "operation_id": "refund_7975e762cf9742d8b2773a9ce1fddc02",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.3548097918974236,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.77,
+            "probabilities": {
+              "get_refund_status": 0.16,
+              "issue_refund": 0.82,
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "escalate": 0.02
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 625,
+            "output_tokens": 64
+          },
+          "latency_ms": 328.1092500546947
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.96,
+            "probabilities": {
+              "get_refund_status": 0.97,
+              "escalate": 0.0,
+              "issue_refund": 0.03,
+              "finish_success": 0.0,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 659,
+            "output_tokens": 65
+          },
+          "latency_ms": 318.88183404225856
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.97,
+            "probabilities": {
+              "finish_success": 0.97,
+              "get_refund_status": 0.02,
+              "issue_refund": 0.0,
+              "escalate": 0.01,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 919,
+            "output_tokens": 63
+          },
+          "latency_ms": 313.3294170256704
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_7975e762cf9742d8b2773a9ce1fddc02",
+            "tool": "issue_refund",
+            "authoritative": true,
+            "status": "succeeded",
+            "request_sha256": "04ee5d427f2b837b1f4ffe3508c08a4b8f98086e1bf52dbd615988b7fd82d2a4",
+            "receipt_id": "refund_7975e762cf9742d8b2773a9ce1fddc02",
+            "effect": {
+              "order_id": "order_918914322e9a4587a890027497300342",
+              "amount_cents": 500,
+              "refund_count": 1
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 186.53979199007154
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 133.00079200416803
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "response_lost",
+      "policy": "verified",
+      "order_id": "order_fed6a697e26942be9e5833664d3d0086",
+      "operation_id": "refund_4d3e9aeda8884b16bbd57a6f5a4b3281",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_4d3e9aeda8884b16bbd57a6f5a4b3281",
+        "transport": "timeout",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 1,
+        "evidence": {
+          "operation_id": "refund_4d3e9aeda8884b16bbd57a6f5a4b3281",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "33a5e61f87882e3bb2991a1ef63c213708a43b2334028c252768ce1d4fffc1c9",
+          "receipt_id": "refund_4d3e9aeda8884b16bbd57a6f5a4b3281",
+          "effect": {
+            "order_id": "order_fed6a697e26942be9e5833664d3d0086",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.029381625005044,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.69,
+            "probabilities": {
+              "finish_success": 0.0,
+              "stop_failure": 0.0,
+              "refund_verified": 0.77,
+              "escalate": 0.23
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 586,
+            "output_tokens": 52
+          },
+          "latency_ms": 327.3993330076337
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.46,
+            "probabilities": {
+              "stop_failure": 0.01,
+              "escalate": 0.35,
+              "finish_success": 0.64
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 914,
+            "output_tokens": 44
+          },
+          "latency_ms": 301.0329999960959
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_4d3e9aeda8884b16bbd57a6f5a4b3281",
+            "transport": "timeout",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 1,
+            "evidence": {
+              "operation_id": "refund_4d3e9aeda8884b16bbd57a6f5a4b3281",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "33a5e61f87882e3bb2991a1ef63c213708a43b2334028c252768ce1d4fffc1c9",
+              "receipt_id": "refund_4d3e9aeda8884b16bbd57a6f5a4b3281",
+              "effect": {
+                "order_id": "order_fed6a697e26942be9e5833664d3d0086",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 183.61058307345957
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 145.03045892342925
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "stale_status_after_commit",
+      "policy": "direct",
+      "order_id": "order_2d71fd74bb344e26b097f95acbe57cb6",
+      "operation_id": "refund_4eb54f7f712e4fd19fb45a87d8ec24cb",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit",
+        "stale_status"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 1.686890208045952,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.73,
+            "probabilities": {
+              "finish_success": 0.0,
+              "issue_refund": 0.78,
+              "escalate": 0.02,
+              "get_refund_status": 0.2,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 618,
+            "output_tokens": 64
+          },
+          "latency_ms": 325.4342919681221
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "get_refund_status",
+            "confidence": 0.95,
+            "probabilities": {
+              "get_refund_status": 0.97,
+              "finish_success": 0.0,
+              "issue_refund": 0.03,
+              "stop_failure": 0.0,
+              "escalate": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 652,
+            "output_tokens": 65
+          },
+          "latency_ms": 292.8371250163764
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.57,
+            "probabilities": {
+              "get_refund_status": 0.08,
+              "issue_refund": 0.67,
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "escalate": 0.25
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 735,
+            "output_tokens": 64
+          },
+          "latency_ms": 317.9840419907123
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.55,
+            "probabilities": {
+              "escalate": 0.04,
+              "finish_success": 0.67,
+              "stop_failure": 0.0,
+              "get_refund_status": 0.29
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 812,
+            "output_tokens": 54
+          },
+          "latency_ms": 317.0950829517096
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "transport": "timeout",
+            "outcome": "unknown"
+          }
+        },
+        {
+          "tool": "get_refund_status",
+          "result": {
+            "operation_id": "refund_4eb54f7f712e4fd19fb45a87d8ec24cb",
+            "tool": "issue_refund",
+            "status": "not_found",
+            "authoritative": false
+          }
+        },
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_4eb54f7f712e4fd19fb45a87d8ec24cb",
+            "order_id": "order_2d71fd74bb344e26b097f95acbe57cb6",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 180.54691702127457
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 0.001250067725777626
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 180.5342499865219
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "stale_status_after_commit",
+      "policy": "verified",
+      "order_id": "order_9f02f5d433c0454d89bbd8c1342106e2",
+      "operation_id": "refund_a6588e7ce336437ca7b27d4f84e3489b",
+      "passed": true,
+      "final_action": "finish_success",
+      "expected_action": "finish_success",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": true,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "response_lost_after_commit",
+        "stale_status"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_a6588e7ce336437ca7b27d4f84e3489b",
+        "transport": "timeout",
+        "status": "confirmed_success",
+        "next_action": "continue",
+        "reason": "postconditions_verified",
+        "attempts": 1,
+        "checks": 2,
+        "evidence": {
+          "operation_id": "refund_a6588e7ce336437ca7b27d4f84e3489b",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "succeeded",
+          "request_sha256": "1b43a00b3a8212d81a40172f037f147b29436ce50f44413f0156e3b72b8d7a8e",
+          "receipt_id": "refund_a6588e7ce336437ca7b27d4f84e3489b",
+          "effect": {
+            "order_id": "order_9f02f5d433c0454d89bbd8c1342106e2",
+            "amount_cents": 500,
+            "refund_count": 1
+          }
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.2158801249461249,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.74,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "refund_verified": 0.81,
+              "escalate": 0.19
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 588,
+            "output_tokens": 52
+          },
+          "latency_ms": 324.5224170386791
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.56,
+            "probabilities": {
+              "stop_failure": 0.01,
+              "escalate": 0.29,
+              "finish_success": 0.7
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 922,
+            "output_tokens": 44
+          },
+          "latency_ms": 295.0015839887783
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_a6588e7ce336437ca7b27d4f84e3489b",
+            "transport": "timeout",
+            "status": "confirmed_success",
+            "next_action": "continue",
+            "reason": "postconditions_verified",
+            "attempts": 1,
+            "checks": 2,
+            "evidence": {
+              "operation_id": "refund_a6588e7ce336437ca7b27d4f84e3489b",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "succeeded",
+              "request_sha256": "1b43a00b3a8212d81a40172f037f147b29436ce50f44413f0156e3b72b8d7a8e",
+              "receipt_id": "refund_a6588e7ce336437ca7b27d4f84e3489b",
+              "effect": {
+                "order_id": "order_9f02f5d433c0454d89bbd8c1342106e2",
+                "amount_cents": 500,
+                "refund_count": 1
+              }
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "timeout",
+          "latency_ms": 200.3588330699131
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 0.001249951310455799
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 124.7238339856267
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "false_success",
+      "policy": "direct",
+      "order_id": "order_38816506a1ac47b8be39d80eef9a6cca",
+      "operation_id": "refund_27fd3d7f7ce6409eafeaca222b7c7698",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "escalate",
+      "false_success": true,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 0,
+        "refunded_cents": 0
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.7989525001030415,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.74,
+            "probabilities": {
+              "get_refund_status": 0.2,
+              "finish_success": 0.0,
+              "issue_refund": 0.78,
+              "escalate": 0.02,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 616,
+            "output_tokens": 64
+          },
+          "latency_ms": 293.06241706945
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.93,
+            "probabilities": {
+              "get_refund_status": 0.05,
+              "finish_success": 0.95,
+              "issue_refund": 0.0,
+              "escalate": 0.0,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 690,
+            "output_tokens": 63
+          },
+          "latency_ms": 338.2585420040414
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "order_id": "order_38816506a1ac47b8be39d80eef9a6cca",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 73.61870899330825
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "false_success",
+      "policy": "verified",
+      "order_id": "order_c709c6fa3de9426f879548a7205f9ded",
+      "operation_id": "refund_7f26fb1da46f4b68953286a9182917b6",
+      "passed": true,
+      "final_action": "escalate",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [],
+      "oracle": {
+        "refund_count": 0,
+        "refunded_cents": 0
+      },
+      "verified_outcome": {
+        "operation_id": "refund_7f26fb1da46f4b68953286a9182917b6",
+        "transport": "returned",
+        "status": "unknown",
+        "next_action": "escalate",
+        "reason": "not_found",
+        "attempts": 2,
+        "checks": 4,
+        "evidence": {
+          "operation_id": "refund_7f26fb1da46f4b68953286a9182917b6",
+          "tool": "issue_refund",
+          "authoritative": true,
+          "status": "not_found"
+        }
+      },
+      "error": null,
+      "duration_seconds": 1.6164380410918966,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.7,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "escalate": 0.22,
+              "finish_success": 0.0,
+              "refund_verified": 0.78
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 585,
+            "output_tokens": 52
+          },
+          "latency_ms": 304.9410000676289
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "escalate",
+            "confidence": 0.89,
+            "probabilities": {
+              "stop_failure": 0.07,
+              "escalate": 0.93,
+              "finish_success": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 740,
+            "output_tokens": 45
+          },
+          "latency_ms": 297.6627500029281
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_7f26fb1da46f4b68953286a9182917b6",
+            "transport": "returned",
+            "status": "unknown",
+            "next_action": "escalate",
+            "reason": "not_found",
+            "attempts": 2,
+            "checks": 4,
+            "evidence": {
+              "operation_id": "refund_7f26fb1da46f4b68953286a9182917b6",
+              "tool": "issue_refund",
+              "authoritative": true,
+              "status": "not_found"
+            }
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 137.20154203474522
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 76.11633406486362
+        },
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 76.01554202847183
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 77.28733401745558
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 95.55937501136214
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "returned",
+          "latency_ms": 78.81683297455311
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "verification_unavailable",
+      "policy": "direct",
+      "order_id": "order_d7ba7e3d32744527b544844c4a0d753d",
+      "operation_id": "refund_f9ed64a2d55e4c59ae1be93fb84cbd88",
+      "passed": false,
+      "final_action": "finish_success",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": true,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": false,
+      "faults": [],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": null,
+      "error": null,
+      "duration_seconds": 0.9308161670342088,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "issue_refund",
+            "confidence": 0.73,
+            "probabilities": {
+              "finish_success": 0.0,
+              "stop_failure": 0.0,
+              "escalate": 0.02,
+              "issue_refund": 0.78,
+              "get_refund_status": 0.2
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 620,
+            "output_tokens": 64
+          },
+          "latency_ms": 322.047375026159
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "finish_success",
+            "confidence": 0.9,
+            "probabilities": {
+              "finish_success": 0.93,
+              "get_refund_status": 0.07,
+              "escalate": 0.0,
+              "stop_failure": 0.0,
+              "issue_refund": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 734,
+            "output_tokens": 63
+          },
+          "latency_ms": 334.9425420165062
+        }
+      ],
+      "observations": [
+        {
+          "tool": "issue_refund",
+          "result": {
+            "status": "succeeded",
+            "receipt_id": "refund_f9ed64a2d55e4c59ae1be93fb84cbd88",
+            "order_id": "order_d7ba7e3d32744527b544844c4a0d753d",
+            "amount_cents": 500
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 195.65550005063415
+        }
+      ],
+      "repetition": 2
+    },
+    {
+      "case": "verification_unavailable",
+      "policy": "verified",
+      "order_id": "order_201bff0645064a409c90d61b2eec80b6",
+      "operation_id": "refund_537fac8bc7e149a8a9fde01afd020810",
+      "passed": true,
+      "final_action": "escalate",
+      "expected_action": "escalate",
+      "false_success": false,
+      "unverified_success": false,
+      "duplicate_effect": false,
+      "safe_completion": false,
+      "unnecessary_escalation": false,
+      "fault_coverage": true,
+      "faults": [
+        "verification_unavailable",
+        "verification_unavailable",
+        "verification_unavailable",
+        "verification_unavailable"
+      ],
+      "oracle": {
+        "refund_count": 1,
+        "refunded_cents": 500
+      },
+      "verified_outcome": {
+        "operation_id": "refund_537fac8bc7e149a8a9fde01afd020810",
+        "transport": "returned",
+        "status": "unknown",
+        "next_action": "escalate",
+        "reason": "verification_unavailable",
+        "attempts": 1,
+        "checks": 4,
+        "evidence": {}
+      },
+      "error": null,
+      "duration_seconds": 1.520887166960165,
+      "decisions": [
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "refund_verified",
+            "confidence": 0.7,
+            "probabilities": {
+              "stop_failure": 0.0,
+              "finish_success": 0.0,
+              "refund_verified": 0.78,
+              "escalate": 0.22
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 583,
+            "output_tokens": 52
+          },
+          "latency_ms": 355.16358294989914
+        },
+        {
+          "answer": {
+            "type": "choice",
+            "choice": "escalate",
+            "confidence": 1.0,
+            "probabilities": {
+              "escalate": 1.0,
+              "finish_success": 0.0,
+              "stop_failure": 0.0
+            }
+          },
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 670,
+            "output_tokens": 45
+          },
+          "latency_ms": 297.21554194111377
+        }
+      ],
+      "observations": [
+        {
+          "tool": "refund_verified",
+          "result": {
+            "operation_id": "refund_537fac8bc7e149a8a9fde01afd020810",
+            "transport": "returned",
+            "status": "unknown",
+            "next_action": "escalate",
+            "reason": "verification_unavailable",
+            "attempts": 1,
+            "checks": 4,
+            "evidence": {}
+          }
+        }
+      ],
+      "tool_trace": [
+        {
+          "tool": "issue_refund",
+          "transport": "returned",
+          "latency_ms": 188.78008308820426
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.002125045284628868
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.004500034265220165
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.004541943781077862
+        },
+        {
+          "tool": "get_refund_status",
+          "transport": "timeout",
+          "latency_ms": 0.004499917849898338
+        }
+      ],
+      "repetition": 2
+    }
+  ],
+  "source_sha256": {
+    "benchmarks/live_jev.py": "71c1e071c38355291b7d62572b13c9cebdc4e022c667164962943ee3c7dd689c",
+    "src/agent_action_evals/verification.py": "d5f1e3919f99f16eeff3068a7d61cd59b21c9fcc5c582c7f3cc556ed85cd672f",
+    "benchmarks/live_service/worker.mjs": "d8a9d0777190b09c5eeba09d751c2dfe18860496ac4dab97bdaa7c576fe8f71f"
+  },
+  "health": {
+    "service": "aae-d1-refund-test",
+    "durable_backend": "cloudflare-d1",
+    "version": 1
+  },
+  "summary": {
+    "direct": {
+      "runs": 18,
+      "passed": 3,
+      "errors": 0,
+      "false_success_claims": 3,
+      "unverified_success_claims": 15,
+      "duplicate_effect_runs": 0,
+      "recoverable_runs": 12,
+      "safe_completions": 3,
+      "unnecessary_escalations": 0,
+      "fault_coverage_runs": 15,
+      "p50_seconds": 1.2197433959809132,
+      "model_calls": 51,
+      "input_tokens": 35635,
+      "output_tokens": 3201
+    },
+    "verified": {
+      "runs": 18,
+      "passed": 18,
+      "errors": 0,
+      "false_success_claims": 0,
+      "unverified_success_claims": 0,
+      "duplicate_effect_runs": 0,
+      "recoverable_runs": 12,
+      "safe_completions": 12,
+      "unnecessary_escalations": 0,
+      "fault_coverage_runs": 18,
+      "p50_seconds": 1.3327891669468954,
+      "model_calls": 36,
+      "input_tokens": 25671,
+      "output_tokens": 1734
+    }
+  }
+}

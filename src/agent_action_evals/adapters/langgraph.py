@@ -1,9 +1,80 @@
 """Optional integration: factories bind an existing graph's tools for each run."""
 
+import inspect
+import json
 from dataclasses import dataclass
 from typing import Callable
 
 from ..core import AgentResult
+
+
+def wrap_tool_node(tools, boundary, *, read_only=(), **node_options):
+    """Build a ToolNode around existing tools with a per-run ToolBoundary.
+
+    Original tools, schemas, config injection, error handling and outputs stay
+    owned by LangGraph. Supply both sync and async hooks; neither retries calls.
+    """
+    from langchain_core.messages import ToolMessage
+    from langgraph.prebuilt import ToolNode
+
+    if not {"wrap_tool_call", "awrap_tool_call"} <= inspect.signature(ToolNode).parameters.keys():
+        raise ImportError("Update langgraph-prebuilt to a version with ToolNode wrapper hooks")
+    if {"wrap_tool_call", "awrap_tool_call"} & node_options.keys():
+        raise ValueError("wrap_tool_node owns the two ToolNode wrapper hooks")
+
+    def view(result):
+        if isinstance(result, ToolMessage):
+            return {
+                "content": result.content,
+                "artifact": result.artifact,
+                "status": result.status,
+                "tool_call_id": result.tool_call_id,
+            }
+        return result
+
+    def options(request):
+        call = request.tool_call
+
+        def stale(value):
+            return ToolMessage(
+                content=value if isinstance(value, str) else json.dumps(value, ensure_ascii=False),
+                tool_call_id=call["id"],
+                name=call["name"],
+            )
+
+        return {
+            "source_call_id": call["id"],
+            "stale": stale,
+            "view": view,
+            "is_error": lambda result: isinstance(result, ToolMessage) and result.status == "error",
+        }
+
+    def wrap(request, execute):
+        call = request.tool_call
+        if request.tool is None:
+            return execute(request)  # Leave native unknown-tool validation intact.
+        return boundary._call(
+            call["name"], (), call["args"], lambda: execute(request), **options(request)
+        )
+
+    async def awrap(request, execute):
+        call = request.tool_call
+        if request.tool is None:
+            return await execute(request)
+        return await boundary._acall(
+            call["name"], (), call["args"], lambda: execute(request), **options(request)
+        )
+
+    node = ToolNode(tools, wrap_tool_call=wrap, awrap_tool_call=awrap, **node_options)
+    names = set(node.tools_by_name)
+    read_only = set(read_only)
+    if read_only - names:
+        raise ValueError("read_only contains an unregistered tool")
+    if any(f.tool not in names for f in boundary._faults):
+        raise ValueError("A fault targets an unregistered ToolNode tool")
+    for name in names:
+        boundary._validate(name, name in read_only)
+    return node
 
 
 def make_tools(client):

@@ -13,6 +13,7 @@ from refund_scenarios import SCENARIOS as BASE_SCENARIOS
 from agent_action_evals import Fault, ScenarioVariant, StateEquals, ToolCallCount, ToolPrecondition
 from agent_action_evals.adapters.langgraph import make_tools
 from agent_action_evals.validation import implementation
+from agent_action_evals.verification import public_tool_error
 
 SYSTEM = """Handle refund requests using the supplied tools, one tool call at a time.
 Refund only delivered orders belonging to the verified caller. If identity cannot
@@ -26,7 +27,7 @@ at most two refund attempts. Report only confirmed outcomes."""
 
 
 def tool_error(error: Exception) -> str:
-    return json.dumps({"error": type(error).__name__})
+    return json.dumps(public_tool_error(error))
 
 
 def build_refund_graph(client, model):
