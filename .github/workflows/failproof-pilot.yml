@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      FAILPROOFAI_HOME: ${{ runner.temp }}/failproof-pilot
+      FAILPROOFAI_HOME: /tmp/failproof-pilot
       FAILPROOFAI_NO_FIRST_RUN: "1"
       FAILPROOFAI_TELEMETRY_DISABLED: "1"
     steps:
