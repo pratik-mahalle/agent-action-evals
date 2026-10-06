@@ -1,0 +1,48 @@
+name: Failproof workflow pilot
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FAILPROOFAI_HOME: /tmp/failproof-pilot
+      FAILPROOFAI_NO_FIRST_RUN: "1"
+      FAILPROOFAI_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: "22"
+          package-manager-cache: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: pratik-mahalle/failproof-chaos
+          ref: 177eb3d15720b087a2e2c01d878ea559b65f7f0b
+          path: .policy-runner
+          persist-credentials: false
+      - name: Install the reviewed engine and pack
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          npm install --global failproofai@1.0.9
+          failproofai policies add FailproofAI/policies@06b802b63f4f --all
+      - name: Check project tool-call expectations
+        run: |
+          mkdir -p .failproofai
+          rm -f results.json REPORT.md
+          node .policy-runner/run.mjs --corpus guardrails/team-cases.json --ci
+      - name: Preserve reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: failproof-pilot-reports
+          path: |
+            results.json
+            REPORT.md
