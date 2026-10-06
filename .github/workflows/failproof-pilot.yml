@@ -28,16 +28,24 @@ jobs:
           path: .policy-runner
           persist-credentials: false
       - name: Install the reviewed engine and pack
+        id: install
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          npm install --global failproofai@1.0.9
-          failproofai policies add FailproofAI/policies@06b802b63f4f --all
+          npm install --global failproofai@1.0.10
+          failproofai policies add FailproofAI/policies@2.0.0 --all
+          node -e 'const fs=require("node:fs"); const p=JSON.parse(fs.readFileSync(process.env.FAILPROOFAI_HOME+"/policies/packs/installed.json","utf8")).packs; if(p.length!==1 || p[0].sha256!=="c09705183be55b518a5e660e026d80aa77b237e51fb550ccfb05dee0335c654a") throw Error("Policy pack digest differs from review");'
       - name: Check project tool-call expectations
         run: |
           mkdir -p .failproofai
           rm -f results.json REPORT.md
           node .policy-runner/run.mjs --corpus guardrails/team-cases.json --ci
+      - name: Check isolated policy expectations
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          mkdir -p reports/isolated
+          cd reports/isolated
+          node ../../.policy-runner/run.mjs --corpus ../../guardrails/team-cases.json --isolate --ci
       - name: Preserve reports
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -46,3 +54,5 @@ jobs:
           path: |
             results.json
             REPORT.md
+            reports/isolated/results.json
+            reports/isolated/REPORT.md
